@@ -1,6 +1,8 @@
 # ProjetWeb
 Site Web M1-IL
 
+Faire une nouvelle branche pour chaque Tp puis la merge .
+
 #Installation
 
     ouvrir un terminal dans public_html :
