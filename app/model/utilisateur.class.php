@@ -1,5 +1,6 @@
 <?php
 
+//Modified by Dimitri Hueber
 /** 
  * @Entity
  * @Table(name="fredouil.utilisateur")
@@ -8,6 +9,11 @@ class utilisateur{
 
 	/** @Id @Column(type="integer")
 	 *  @GeneratedValue
+	 *	@OneToMany(targetEntity="fredouil.message")
+	 *	@JoinColumn(name="id", referencedColumnName="emetteur")
+	 *	@JoinColumn(name="id", referencedColumnName="destinataire")
+	 *	@OneToMany(targetEntity="fredouil.chat")
+	 *	@JoinColumn(name="id", referencedColumnName="emetteur")
 	 */ 
 	public $id;
 
