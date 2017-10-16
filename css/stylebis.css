@@ -1,4 +1,5 @@
 .wrapper {
+    position: relative;
     margin-top: 80px;
     margin-bottom: 20px;
 }
@@ -58,11 +59,12 @@ input[type="password"] {
 
 .div_error_layout {
 
+    text-align: center;
     margin-top: 80px;
     margin-bottom: 20px;
     position: relative;
     font-size: 16px;
     height: auto;
-    padding: 10px;
+    padding: 50px;
 
 }
