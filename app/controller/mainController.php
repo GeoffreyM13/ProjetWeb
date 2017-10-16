@@ -64,9 +64,6 @@ class mainController
 
     public static function disconnected($request,$context)
     {
-        $context->data = "Vous êtes bien déconnecté! ";
-
-
         unset($_SESSION['user_id']); 
         return context::NONE;
     }

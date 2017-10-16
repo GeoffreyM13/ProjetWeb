@@ -32,10 +32,8 @@
             url: 'https://pedago.univ-avignon.fr/~uapv1302596/BlackManbaProject/BlackManbaAjax.php?action=disconnected',
 
             success: function(data) {
-
-			$('#divconnected').remove();
-    		$("#layout").load('app/view/loginSuccess.php .container');
-
+    		$('#layout').empty().prepend("Vous êtes bien deconnecté!");
+			$('#divconnected').load('app/view/loginSuccess.php .container');
     		   // change l'url sans rafrechir
                     window.history.pushState('./BlackManba.php?action=login', 'Title', './BlackManba.php?action=login');
 
