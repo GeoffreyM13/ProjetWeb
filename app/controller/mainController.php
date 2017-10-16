@@ -68,4 +68,15 @@ class mainController
         return context::NONE;
     }
 
+    //Martinez Geoffrey
+    //16-10-17
+    public static function showmessage($id)
+    {
+            $context->res = utilisateurTable::getUserById($id);
+            $context->message=messageTable::getMessageByUserId($id);
+
+
+        return context::SUCCESS;
+    }
+
 }
