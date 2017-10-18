@@ -68,7 +68,7 @@ class mainController
 
     public static function disconnected($request,$context)
     {
-        $_SESSION['statut']= NULL;
+        unset($_SESSION['statut']);
         session_destroy();
         return context::NONE;
     }
