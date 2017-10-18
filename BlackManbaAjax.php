@@ -42,7 +42,17 @@ if($view===false){
 
 //inclusion du layout qui va lui meme inclure le template view
 elseif($view==context::NONE){
-    include($nameApp."/layout/".$context->getLayout().".php");
+
+    if (isset($_SESSION['statut']))
+    {
+
+        include($nameApp."/layout/layoutConnected.php");
+    }
+    else {
+
+        include($nameApp . "/layout/" . $context->getLayout() . ".php");
+    }
+
 }
 
 ?>

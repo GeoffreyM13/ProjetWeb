@@ -38,7 +38,7 @@ class mainController
                 context::setSessionAttribute('identifiant', $context->res->identifiant);
                 context::setSessionAttribute('nom', $context->res->nom);
                 context::setSessionAttribute('prenom', $context->res->prenom);
-                //$_SESSION['statut']= 'actif';
+                $_SESSION['statut']= 'actif';
 
                 return $context->redirect("BlackManba.php?action=connected");
 
@@ -68,6 +68,7 @@ class mainController
 
     public static function disconnected($request,$context)
     {
+        $_SESSION['statut']= NULL;
         session_destroy();
         return context::NONE;
     }
