@@ -51,9 +51,13 @@ class mainController
 
     public static function connected($request,$context)
     {
-
+        if($_SESSION['prenom']!=null || $_SESSION['nom']!=null){
         $context->data = "Bienvenue $_SESSION[prenom] , $_SESSION[nom] ! ";
         return context::SUCCESS;
+        }
+        else{
+            return $context->redirect("BlackManba.php?action=login");
+        }
     }
 
 	public static function index($request,$context)
@@ -64,7 +68,7 @@ class mainController
 
     public static function disconnected($request,$context)
     {
-        unset($_SESSION['user_id']); 
+        session_destroy();
         return context::NONE;
     }
 

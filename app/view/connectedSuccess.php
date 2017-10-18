@@ -9,6 +9,7 @@
 
 
 
+
 <div class="col-md-4 col-md-offset-2" id="divconnected">
 
     <h1>Connected to BlackManba ! </h1>
@@ -27,16 +28,13 @@
 
           $.ajax({
 
-            //type: 'GET',
-			//dataType: 'html',
-           // url: 'https://pedago.univ-avignon.fr/~uapv1302596/BlackManbaProject/BlackManbaAjax.php?action=disconnected',
+            type: 'GET',
+			     dataType: 'html',
+            url: 'https://pedago.univ-avignon.fr/~uapv1302596/ProjetWeb/BlackManbaAjax.php?action=disconnected',
 
             success: function(data) {
-    		$('#layout').empty().prepend("Vous êtes bien deconnecté!");
-			$('#divconnected').load('app/view/loginSuccess.php .container');
-    		   // change l'url sans rafrechir
-                    window.history.pushState('./BlackManba.php?action=login', 'Title', './BlackManba.php?action=login');
-
+    		      $('#layout').empty().prepend("Vous êtes bien deconnecté!");
+			        $('#divconnected').load('app/view/loginSuccess.php .container');
             },
             error: function() {
 

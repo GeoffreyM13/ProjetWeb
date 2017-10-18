@@ -13,7 +13,9 @@
 <!-- j'ai le droit de mettre des commentaires dans mon fichier HTML -->
 <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
 
-    <div id="layout" class="div_error_layout"> <?php echo $context->data; ?> <?php echo $context->error; ?> </div>
+    <div id="layout" class="div_error_layout"> 
+    	<?php echo $context->data; ?> <?php echo $context->error; ?> 
+    </div>
 
 	<?php include($template_view); ?>
 </body>
