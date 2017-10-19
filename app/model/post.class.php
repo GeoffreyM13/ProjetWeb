@@ -15,9 +15,7 @@ class post{
 
     /** @Id @Column(type="varchar", length=2000)
      *  @GeneratedValue
-     * @OnetoMany(targetEntity("fredouil.message")
-     * @JoinColumn(name="id" , referenceColumnName="post")
-     */
+         */
     public $id;
 
     /** @Column(type="varchar", length=200)
