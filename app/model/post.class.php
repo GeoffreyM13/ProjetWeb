@@ -13,22 +13,24 @@
 
 class post{
 
-    /** @Id @Column(type="varchar", length=2000)
+    /**
+     * @Id @Column(type="integer")
      * @GeneratedValue
-     * @OnetoMany(targetEntity("fredouil.message")
-     * @JoinColumn(name="id" , referenceColumnName="post")
      */
     public $id;
 
-    /** @Column(type="varchar", length=200)
+    /**
+     * @Column(type="text", length=2000, nullable =true)
      */
     public $texte;
 
-    /** @Column(type="timestamp") */
+    /**
+     * @Column(type="datetime")
+     */
     public $date;
 
-    /** @Column(type="varchar", length=200)
-
+    /**
+     * @Column(type="string", length=200, nullable=true)
      */
     public $image;
 

@@ -9,11 +9,6 @@ class utilisateur{
 
 	/** @Id @Column(type="integer")
 	 *  @GeneratedValue
-	 *	@OneToMany(targetEntity="fredouil.message")
-	 *	@JoinColumn(name="id" , referenceColumnName="emetteur")
-	 *	@JoinColumn(name="id" , referenceColumnName="destinataire")
-	 *	@OneToMany(targetEntity="fredouil.chat")
-	 *	@JoinColumn(name="id" , referenceColumnName="emetteur")
 	 */ 
 	public $id;
 

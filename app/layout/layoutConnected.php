@@ -51,7 +51,8 @@
             </ul>
             <ul class="nav navbar-nav navbar-right">
 
-                <li><a href="#"><span class="glyphicon glyphicon-log-out"></span> Logout</a></li>
+                <li> <a class="navbar-brand" href="#"> Hi, <?php echo $_SESSION['identifiant'];?> ! </a></li>
+                <li><button id="Submit" style="background-color:gainsboro"><span class="glyphicon glyphicon-log-out" ></span> Logout</button></li>
             </ul>
         </div>
     </div>
@@ -59,6 +60,26 @@
 
 <!-- NAVBAR -->
 
+
+<script>
+
+    $(function() {
+        $('#Submit').click(function() {
+            $.ajax({
+                type: 'GET',
+                dataType: 'html',
+                url: 'https://pedago.univ-avignon.fr/~uapv1302596/ProjetWeb/BlackManbaAjax.php?action=disconnected',
+                success: function(data) {
+                    $('#layout').empty().prepend("Vous êtes bien deconnecté!");
+                    $('#divconnected').load('app/view/loginSuccess.php .container');
+                },
+                error: function() {
+                    alert('La requête n\'a pas abouti'); }
+            });
+        });
+    });
+
+</script>
 
 
 <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>

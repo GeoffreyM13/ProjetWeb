@@ -8,20 +8,14 @@
 class mainController
 {
 
-	public static function helloWorld($request,$context)
-	{
-		$context->mavariable="hello world";
-		return context::SUCCESS;
-	}
-
     public static function login($request,$context)
     {
         
-        if(!empty($_REQUEST['username']) && !empty($_REQUEST['password']))
+        if(!empty($request['username']) && !empty($request['password']))
         {
 
-            $username = $_REQUEST['username'];
-            $password = $_REQUEST['password'];
+            $username = $request['username'];
+            $password = $request['password'];
 
             $context->res=utilisateurTable::getUserByLoginAndPass($username,$password);
 
@@ -40,7 +34,7 @@ class mainController
                 context::setSessionAttribute('prenom', $context->res->prenom);
                 $_SESSION['statut']= 'actif';
 
-                return $context->redirect("BlackManba.php?action=connected");
+                return $context->redirect("BlackManba.php?action=showmessage");
 
             }
 
@@ -60,12 +54,6 @@ class mainController
         }
     }
 
-	public static function index($request,$context)
-	{
-		
-		return context::SUCCESS;
-	}
-
     public static function disconnected($request,$context)
     {
         unset($_SESSION['statut']);
@@ -75,11 +63,9 @@ class mainController
 
     //Martinez Geoffrey
     //16-10-17
-    public static function showmessage($id)
+    public static function showmessage($request, $context)
     {
-            $context->res = utilisateurTable::getUserById($id);
-            $context->message=messageTable::getMessageByUserId($id);
-
+            $context->message=messageTable::getMessageByUserId(21);
 
         return context::SUCCESS;
     }

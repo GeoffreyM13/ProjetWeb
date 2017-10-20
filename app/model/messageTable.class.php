@@ -7,20 +7,22 @@
  */
 require_once "message.class.php";
 
-public static function getMessageByUserId($id){
+class messageTable {
 
-    $em = dbconnection::getInstance()->getEntityManager() ;
+    public static function getMessageByUserId($id){
 
-    $messageRepository = $em->getRepository('message');
-    $message = $userRepository->findAll('emetteur'=>$id);
+    $em = dbconnection::getInstance()->getEntityManager();
 
-    if ($message == false){
+    $userRepository = $em->getRepository('message');
+    $message = $userRepository->findBy(['emetteur'=>$id]);
+
+    if ($message == false) {
 
         return false;
     }
     return $message;
+    }
+
 }
-
-
 
 ?>

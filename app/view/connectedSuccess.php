@@ -1,6 +1,5 @@
 <div class="col-md-4 col-md-offset-1" id="divconnected">
   <h1>Connected to BlackManba ! </h1>
-    <button class="btn btn-lg btn-primary" id="Submit" name="Submit" value="Login" type="Submit">Deconnexion</button>
 </div>
 
 <script>

@@ -1,42 +1,44 @@
 <?php
-// Create by Dimitri Hueber
 
-
-/** 
+/**
  * @Entity
  * @Table(name="fredouil.message")
  */
 class message{
 
-	/** @Id @Column(type="integer")
-	 *  @GeneratedValue
-	 */ 
-	public $id;
+    /** @Id @Column(type="integer")
+     *  @GeneratedValue
+     */
+    public $id;
 
-	/** @Column(type="int"), options={"default":NULL)
-	 *	@OneToOne(targetEntity="fredouil.utilisateur")
-	 *	@JoinColumn(name="emetteur", referencedColumnName="id")
-	 */ 
-	public $emetteur;
-		
-	/** @Column(type="int"), options={"default":NULL) 
-	 *	@OneToOne(targetEntity("fredouil.utilisateur"))
-	 *	@JoinColumn(name="destinataire", referencedColumnName="id")
-	 */ 
-	public $destinataire;
+    /**
+     * @ManyToOne(targetEntity="utilisateur")
+     * @JoinColumn(name="parent", referencedColumnName="id")
+     */
+    public $parent;
 
-	/** @Column(type="int"), options={"default":NULL) */ 
-	public $parent;
+    /**
+     * @Column(type="integer", nullable=true)
+     */
+    public $aime;
 
-	/** @Column(type="int"), options={"default":NULL) 
-	 *	@OneToOne(targetEntity("fredouil.post"))
-	 *	@JoinColumn(name="post", referencedColumnName="id")
-	 */ 
-	public $post;
+    /**
+     * @ManyToOne(targetEntity="utilisateur")
+     * @JoinColumn(name="emetteur", referencedColumnName="id")
+     */
+    public $emetteur;
 
-	/** @Column(type="int", options={"default":NULL) */ 
-	public $aime;
-	
+    /**
+     * @ManyToOne(targetEntity="utilisateur")
+     * @JoinColumn(name="destinataire", referencedColumnName="id")
+     */
+    public $destinataire;
+
+    /**
+     * @ManyToOne(targetEntity="post")
+     * @JoinColumn(name="post", referencedColumnName="id")
+     */
+    public $post;
 }
 
 ?>

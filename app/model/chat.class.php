@@ -13,14 +13,14 @@ class chat{
 	 */ 
 	public $id;
 
-	/** @Column(type="int"), options={"default":NULL)
-	 *	@OneToOne(targetEntity="fredouil.post")
+	/**
+	 *	@ManyToOne(targetEntity="post")
 	 *	@JoinColumn(name="post", referencedColumnName="id")
 	 */ 
 	public $post;
 		
-	/** @Column(type="int"), options={"default":NULL) 
-	 *	@OneToOne(targetEntity("fredouil.utilisateur"))
+	/**
+	 *	@ManyToOne(targetEntity("utilisateur"))
 	 *	@JoinColumn(name="emetteur", referencedColumnName="id")
 	 */ 
 	public $emetteur;
