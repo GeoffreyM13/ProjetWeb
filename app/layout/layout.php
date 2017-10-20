@@ -32,7 +32,7 @@
 
             <ul class="nav navbar-nav navbar-right">
                 <li><a href="#"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
-                <li><a href="#"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
+                <li><a href="BlackManba.php?action=login"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
             </ul>
         </div>
     </div>
@@ -40,7 +40,7 @@
 <!-- j'ai le droit de mettre des commentaires dans mon fichier HTML -->
 <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
 
-<div id="layout" class="div_error_layout"> <?php echo $context->data; ?> <?php echo $context->error; ?> </div>
+<div id="layout"> <?php echo $context->data; ?> <?php echo $context->error; ?> </div>
 
 <?php include($template_view); ?>
 </body>

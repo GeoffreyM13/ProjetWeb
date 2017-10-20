@@ -14,7 +14,7 @@ class utilisateurTable {
 	  return $user; 
   }
 
-  //Martinez Geoffrey
+    //Martinez Geoffrey
 	//Retourne les données :user par l'id
 	//in = user id
 	//out = array
@@ -28,6 +28,21 @@ class utilisateurTable {
     }
 	  return $user;
   }
+
+    //Martinez Geoffrey
+
+    public static function getUsers(){
+        $em = dbconnection::getInstance()->getEntityManager() ;
+        $usersRepository = $em->getRepository('utilisateur');
+        $users = $usersRepository->findAll();
+
+
+        if ($users == false){
+            return false;
+        }
+
+        return $users;
+    }
 }
 
 ?>

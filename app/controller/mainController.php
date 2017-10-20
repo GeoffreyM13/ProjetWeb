@@ -69,5 +69,20 @@ class mainController
 
         return context::SUCCESS;
     }
+    //Martinez GEoffrey
+    //20-10-17
+    public static function userslist($request,$context)
+    {
+        $context->users=utilisateurTable::getUsers();
+
+        return context::SUCCESS;
+    }
+
+    public static function allmessage($request,$context)
+    {
+        $context->allmessage = messageTable::getAllMessages();
+
+        return context::SUCCESS;
+    }
 
 }

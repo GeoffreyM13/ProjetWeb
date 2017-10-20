@@ -37,7 +37,7 @@
         </div>
         <div class="collapse navbar-collapse" id="myNavbar">
             <ul class="nav navbar-nav">
-                <li class="active"><a href="#">Home</a></li>
+                <li class="active"><a href="BlackManba.php?action=showmessage">Home</a></li>
                 <li class="dropdown">
                     <a class="dropdown-toggle" data-toggle="dropdown" href="#">Page 1 <span class="caret"></span></a>
                     <ul class="dropdown-menu">
@@ -46,8 +46,8 @@
                         <li><a href="#">Page 1-3</a></li>
                     </ul>
                 </li>
-                <li><a href="#">Page 2</a></li>
-                <li><a href="#">Page 3</a></li>
+                <li><a href="BlackManba.php?action=userslist">Users List</a></li>
+                <li><a href="BlackManba.php?action=allmessage">All Messages</a></li>
             </ul>
             <ul class="nav navbar-nav navbar-right">
 
@@ -68,7 +68,7 @@
             $.ajax({
                 type: 'GET',
                 dataType: 'html',
-                url: 'https://pedago.univ-avignon.fr/~uapv1302596/ProjetWeb/BlackManbaAjax.php?action=disconnected',
+                url: '../ProjetWeb/BlackManbaAjax.php?action=disconnected',
                 success: function(data) {
                     $('#layout').empty().prepend("Vous êtes bien deconnecté!");
                     $('#divconnected').load('app/view/loginSuccess.php .container');
@@ -84,7 +84,7 @@
 
 <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
 
-<div id="layout" class="div_error_layout"> <?php echo $context->data; ?> <?php echo $context->error; ?> </div>
+<div id="layout"> <?php echo $context->data; ?> <?php echo $context->error; ?> </div>
 
 <?php include($template_view); ?>
 </body>
