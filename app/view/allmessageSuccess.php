@@ -18,57 +18,42 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-    <style>
-        /* Set height of the grid so .sidenav can be 100% (adjust if needed) */
-        .row.content {height: 1500px}
 
-        /* Set gray background color and 100% height */
-        .sidenav {
-            background-color: #f1f1f1;
-            height: 100%;
-        }
-
-        /* Set black background color, white text and some padding */
-        footer {
-            background-color: #555;
-            color: white;
-            padding: 15px;
-        }
-
-        /* On small screens, set height to 'auto' for sidenav and grid */
-        @media screen and (max-width: 767px) {
-            .sidenav {
-                height: auto;
-                padding: 15px;
-            }
-            .row.content {height: auto;}
-        }
-    </style>
 </head>
 <body>
+    <?php foreach($context->allmessage as $message): ?>
+    <div class="col-sm-9">
 
-<div class="container-fluid">
-    <div class="row content">
-        <div class="col-sm-9">
-
-            <?php foreach($context->allmessage as $message)
-
-
-            {print("<h4><small>RECENT POSTS</small></h4>");
-                print("<hr>");
-                print("<p>"); echo $message->post->texte; print("</p>");
-                print("<h5><span class='glyphicon glyphicon-time'></span> Post by "); echo $message->emetteur->nom; print("</h5>");
-                print("<h5><span class='label 4abel-danger'>Food</span> <span class='label label-primary'>Ipsum</span></h5><br>");
-                print("<h4> Pour : "); echo $message->destinataire->nom ; print("</h4><br><br>");}
-
-
-
-            ?>
-
-
+        <div class="row">
+            <div class="span2">
+                <a href="#" class="thumbnail">
+                    <!-- <img src="http://placehold.it/260x180" alt=""> -->
+                </a>
+            </div>
+            <div class="span6">
+                <p>
+                    <?= $message->post->texte; ?>
+                </p>
+            </div>
+        </div>
+        <div class="row">
+            <div class="span8">
+                <p></p>
+                <p>
+                    <i class="icon-user"></i> by <a href="#"> <?= $message->emetteur->nom; ?> </a>
+                    | <i class="icon-calendar"></i>
+                    | <i class="icon-comment"></i> <a href="#">3 Comments</a>
+                    | <i class="icon-share"></i> <a href="#">39 Shares</a>
+                    | <i class="icon-tags"></i> Tags : <a href="#"><span class="label label-info">Snipp</span></a>
+                    <a href="#"><span class="label label-info">Bootstrap</span></a>
+                    <a href="#"><span class="label label-info">UI</span></a>
+                    <a href="#"><span class="label label-info">growth</span></a>
+                </p>
+            </div>
         </div>
     </div>
-</div>
+
+<?php endforeach; ?>
 
 <footer class="container-fluid">
     <p>Footer Text</p>

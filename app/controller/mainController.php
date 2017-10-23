@@ -63,6 +63,7 @@ class mainController
 
     //Martinez Geoffrey
     //16-10-17
+
     public static function showmessage($request, $context){
             $context->message=messageTable::getMessageByUserId(21);
 
@@ -76,7 +77,11 @@ class mainController
         return context::SUCCESS;
     }
 
-    public static function allmessage($request,$context){
+    //Martinez GEoffrey
+    //20-10-17
+    public static function allmessage($request,$context)
+    {
+
         $context->allmessage = messageTable::getAllMessages();
 
         return context::SUCCESS;
