@@ -11,12 +11,12 @@
 
 
 
-<div class="row">
+<div class="list_users">
 
     <div class="col-md-6 col-md-offset-2">
         <h2>Liste des Utilisateurs de l'application</h2>
         <p>Vous pouvez cliquer sur un utilisateur pour voir sont profil :</p>
-        <table class="table table-striped">
+        <table id="list_users" class="display" width="100%" cellspacing="0">
             <thead>
             <tr>
                 <th>avatar</th>
@@ -43,3 +43,8 @@
         </table>
     </div>
 </div>
+<script type="text/javascript">
+  $(document).ready(function() {
+    $('#list_users').DataTable();
+  } );
+</script>
