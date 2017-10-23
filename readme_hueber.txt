@@ -1,6 +1,7 @@
 findOneByidentifiant():
 
 les mécanismes php permettant d'utiliser cette méthode sont :
-- la connexion à la base de données avec dbconnection
-- ensuite on récupère la table avec getRepository('table')
-- puis nous récuperons une valeur de la colonne identifiant(colonne critère) qui est égale au paramètre passé en argument dans findOneByidentifiant('paramètre')
+- Les méthodes magiques
+Dans notre cas la méthode magique est:__call() qui émule des méthodes. 
+Ces méthodes n'existent pas dans la classe.
+Ces méthodes émulées sont prises en charge par __call() qui va exécuter du code en fonction du nom de la méthode.
