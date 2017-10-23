@@ -68,8 +68,9 @@ foreach ( $context->message as $message)
             {print("<h4><small>RECENT POSTS</small></h4>");
             print("<hr>");
             print("<h2>"); echo $message->post->texte; print("</h2>");
-            print("<h5><span class='glyphicon glyphicon-time'></span> Post by "); echo $message->parent->nom;print(" for "); echo $message->destinataire->nom; print("</h5>");
-            print("<h5><span class='label label-danger'>Pouce Rouge !</span> <span class='label label-primary'>Pouce Bleu !</span></h5><br>");
+            print("<h5><span class='glyphicon glyphicon-user'></span> Post by "); echo $message->emetteur->nom;print(" for "); echo $message->destinataire->nom; print("</h5>");
+            print("<h5><span class='glyphicon glyphicon-time'></span>"); echo $message->post->getDate(); print("</h5>");
+            print("<h5><span class='glyphicon glyphicon-thumbs-up'>"); if (!isset($message->aimer)) { echo "0";} else {echo $message->aimer;}   print("</span> <span class='label label-primary'>Add Pouce Bleue !</span></h5><br>");
             print("<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
             <br><br>");}
             ?>

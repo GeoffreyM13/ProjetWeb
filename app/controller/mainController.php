@@ -65,7 +65,7 @@ class mainController
     //16-10-17
     public static function showmessage($request, $context)
     {
-            $context->message=messageTable::getMessageByUserId(21);
+            $context->message=messageTable::getMessageByUserId(16);
 
         return context::SUCCESS;
     }

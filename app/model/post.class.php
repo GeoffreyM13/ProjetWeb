@@ -35,6 +35,11 @@ class post{
     public $image;
 
 
+    public function getDate()
+    {
+        return date_format($this->date, 'd-m-Y H:i');
+        //return $this->date->format('Y-m-d H:i:s');
+    }
 }
 
 ?>
