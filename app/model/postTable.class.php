@@ -11,7 +11,7 @@ require_once "post.class.php";
     class postTable
     {
 
-
+    //Martinez Geoffrey
         public static function getPost($id){
 
             $em = dbconnection::getInstance()->getEntityManager() ;

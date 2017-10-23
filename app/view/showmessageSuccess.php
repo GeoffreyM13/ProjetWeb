@@ -6,8 +6,6 @@
  * Time: 18:30
  */
 foreach ( $context->message as $message)
-
-
 ?>
 
 <!DOCTYPE html>
@@ -20,16 +18,12 @@ foreach ( $context->message as $message)
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
     <style>
-        /* Set height of the grid so .sidenav can be 100% (adjust if needed) */
         .row.content {height: 1500px}
-
-        /* Set gray background color and 100% height */
         .sidenav {
             background-color: #f1f1f1;
             height: 100%;
         }
 
-        /* Set black background color, white text and some padding */
         footer {
             background-color: #555;
             color: white;
@@ -76,7 +70,7 @@ foreach ( $context->message as $message)
             print("<h2>"); echo $message->post->texte; print("</h2>");
             print("<h5><span class='glyphicon glyphicon-time'></span> Post by "); echo $message->parent->nom;print(" for "); echo $message->destinataire->nom; print("</h5>");
             print("<h5><span class='label label-danger'>Pouce Rouge !</span> <span class='label label-primary'>Pouce Bleu !</span></h5><br>");
-            print("<p>Food is my passion. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+            print("<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
             <br><br>");}
             ?>
 

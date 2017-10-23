@@ -78,6 +78,8 @@ class mainController
         return context::SUCCESS;
     }
 
+    //Martinez GEoffrey
+    //20-10-17
     public static function allmessage($request,$context)
     {
         $context->allmessage = messageTable::getAllMessages();

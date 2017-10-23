@@ -24,6 +24,7 @@ class messageTable {
     }
     return $message;
     }
+
     //Martinez Geoffrey
 
     public static function getAllMessages(){
