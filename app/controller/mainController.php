@@ -63,25 +63,27 @@ class mainController
 
     //Martinez Geoffrey
     //16-10-17
-    public static function showmessage($request, $context)
-    {
+    public static function showmessage($request, $context){
             $context->message=messageTable::getMessageByUserId(21);
 
         return context::SUCCESS;
     }
     //Martinez GEoffrey
     //20-10-17
-    public static function userslist($request,$context)
-    {
+    public static function userslist($request,$context){
         $context->users=utilisateurTable::getUsers();
 
         return context::SUCCESS;
     }
 
-    public static function allmessage($request,$context)
-    {
+    public static function allmessage($request,$context){
         $context->allmessage = messageTable::getAllMessages();
 
+        return context::SUCCESS;
+    }
+    //Dimitri Hueber, permet de récupérer le profil de l'utilisateur connecté
+    public static function utilisateurlog($request,$context){
+        $context->profil=utilisateurTable::getUserById($_SESSION['id']);
         return context::SUCCESS;
     }
 

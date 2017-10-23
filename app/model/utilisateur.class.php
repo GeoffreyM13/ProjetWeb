@@ -33,6 +33,9 @@ class utilisateur{
 	/** @Column(type="datetime", length=4000) */ 
 	public $date_de_naissance;
 	
+	public function getDate(){
+        return date_format($this->date_de_naissance,'d-m-Y');
+    }
 }
 
 ?>
