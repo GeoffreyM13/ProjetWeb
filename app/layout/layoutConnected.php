@@ -17,9 +17,16 @@
     <link href="css/stylebis.css" rel="stylesheet" type="text/css" >
 
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"> 
+    <script type="text/javascript" language="javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script type="text/javascript" language="javascript" src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script> 
+    <script type="text/javascript" language="javascript" src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.16/css/jquery.dataTables.min.css">
+    <script type="text/javascript" language="javascript" src="//code.jquery.com/jquery-1.12.4.js">
+    </script>
+    <script type="text/javascript" language="javascript" src="https://cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js">
+    </script>
     
-
 </head>
 <body>
 
@@ -51,13 +58,6 @@
 </nav>
 
 <!-- NAVBAR -->
-<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
-<script src="https://cdn.datatables.net/1.10.16/css/jquery.dataTables.min.css"></script>
-<script src="https://cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js"></script>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-<script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
-
 <div id="layout"> <?php echo $context->data; ?> <?php echo $context->error; ?> </div>
 
 <?php include($template_view); ?>
@@ -73,7 +73,6 @@
                 url: '../ProjetWeb/BlackManbaAjax.php?action=disconnected',
                 success: function(data) {
                     $('#layout').empty().prepend("Vous êtes bien deconnecté!");
-                    $('#divconnected').load('app/view/loginSuccess.php .container');
                 },
                 error: function() {
                     alert('La requête n\'a pas abouti'); }
