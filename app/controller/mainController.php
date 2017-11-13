@@ -87,8 +87,12 @@ class mainController
         return context::SUCCESS;
     }
     //Dimitri Hueber, permet de récupérer le profil de l'utilisateur connecté
-    public static function utilisateurlog($request,$context){
+    public static function profil($request,$context){
         $context->profil=utilisateurTable::getUserById($_SESSION['id']);
+        if(!empty($request['modif_statut'])){
+            $context->profil->statut=strip_tags($request['modif_statut']);
+            utilisateurTable::updateStatut($context->profil);
+        }
         return context::SUCCESS;
     }
 
