@@ -69,7 +69,7 @@ class mainController
 
         return context::SUCCESS;
     }
-    //Martinez GEoffrey
+    //Martinez Geoffrey
     //20-10-17
     public static function userslist($request,$context){
         $context->users=utilisateurTable::getUsers();
@@ -77,7 +77,7 @@ class mainController
         return context::SUCCESS;
     }
 
-    //Martinez GEoffrey
+    //Martinez Geoffrey
     //20-10-17
     public static function allmessage($request,$context)
     {
@@ -86,6 +86,15 @@ class mainController
 
         return context::SUCCESS;
     }
+
+    public static function chat($request,$context)
+    {
+
+        $context->chat = chatTable::getChats();
+
+        return context::SUCCESS;
+    }
+
     //Dimitri Hueber, permet de récupérer le profil de l'utilisateur connecté
     public static function utilisateurlog($request,$context){
         $context->profil=utilisateurTable::getUserById($_SESSION['id']);
