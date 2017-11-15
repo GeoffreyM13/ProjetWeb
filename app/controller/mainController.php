@@ -66,12 +66,17 @@ class mainController
 
     public static function showmessage($request, $context){
 
-            if (!isset($_GET['id']))
-                $context->message=messageTable::getMessageByUserId($_GET['id']);
+            if (isset($_GET['id'])) {
+                self::userslist($request,$context);
+                $context->message = messageTable::getMessageByUserId($_GET['id']); //recup messages user
+                $context->res = utilisateurTable::getUserById($_GET['id']); //recup info user
+            }
 
-            else
-                $context->message=messageTable::getMessageByUserId($_SESSION['id']);
-
+            else{
+                self::userslist($request,$context);
+            $context->message = messageTable::getMessageByUserId($_SESSION['id']);
+            $context->res = utilisateurTable::getUserById($_SESSION['id']); //recup info user
+            }
         return context::SUCCESS;
     }
 
