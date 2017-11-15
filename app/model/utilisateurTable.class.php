@@ -46,7 +46,7 @@ class utilisateurTable {
     // Dimitri Hueber
     public static function updateStatut($user){
         $em = dbconnection::getInstance()->getEntityManager() ;
-        $em = flush($user);
+        $em->flush($user);
     }
 }
 
