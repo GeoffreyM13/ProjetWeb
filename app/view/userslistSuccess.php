@@ -33,7 +33,7 @@
             if ($data->nom!=context::getSessionAttribute('nom') && $data->prenom!=context::getSessionAttribute('prenom') && $data->identifiant!=context::getSessionAttribute('identifiant')){
                 ?>
                 <tr>
-                    <td><?php echo $data->nom ?></td>
+                    <td><a type="button" class="btn btn-primary" href="BlackManba.php?action=showmessage&id=<?php echo $data->id ?>"><?php echo $data->nom ?></a></td>
                     <td><?php echo $data->prenom ?></td>
                     <td><?php echo $data->identifiant ?></td>
                     <td><a type="button" href="petitTweet.php?action=view_profilUsers&id=<?php echo $data->id ?>"><img class="image-circle" src="<?php echo (!empty($context->user->avatar)?$context->user->avatar:'images/no-avatar.png') ?>"></a></td>

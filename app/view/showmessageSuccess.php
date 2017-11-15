@@ -5,8 +5,9 @@
  * Date: 16/10/2017
  * Time: 18:30
  */
-foreach ( $context->message as $message)
 
+if (!empty($context->message))  foreach ( $context->message as $message);
+else $message = "Pas encore de post pour cet user !";
 
 
     ?>
@@ -50,7 +51,7 @@ foreach ( $context->message as $message)
     <div class="container-fluid">
         <div class="row content">
             <div class="col-sm-3 sidenav">
-                <h4>Message de <?php echo $message->emetteur->nom ?> </h4>
+                <h4><?php echo $_SESSION['nom']." ".$_SESSION['prenom'] ?> </h4>
                 <ul class="nav nav-pills nav-stacked">
                     <li class="active"><a href="#section1">Home</a></li>
                     <li><a href="#section2">Friends</a></li>
@@ -68,9 +69,9 @@ foreach ( $context->message as $message)
 
         <div class="col-sm-9">
 
-            <?php foreach ( $context->message as $message)
+            <?php if(!empty($context->message)) { foreach ( $context->message as $message)
 
-            {print("<h4><small>RECENT POSTS</small></h4>");
+            {print("<h4><small>RECENT POST(S)</small></h4>");
             print("<hr>");
             print("<h2>"); echo $message->post->texte; print("</h2>");
 
@@ -79,11 +80,17 @@ foreach ( $context->message as $message)
             print("<h5><span class='glyphicon glyphicon-thumbs-up'>"); if (!isset($message->aimer)) { echo "0";} else {echo $message->aimer;}   print("</span> <span class='label label-primary'>Add Pouce Bleue !</span></h5><br>");
             print("<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
             <br><br>");}
-            ?>
+
+            }
+
+            else {
+                print("<h4><small>RECENT POST(S)</small></h4>");
+                print("<hr>");
+                print("<h2>"); echo $message; print("</h2>");} ?>
 
 
-
-                <h4>Leave a Comment:</h4>
+                <br><br>
+                <h4>Envoyer un message à <?php $_SESSION['nom']." ".$_SESSION['prenom'] ?> : </h4>
                 <form role="form">
                     <div class="form-group">
                         <textarea class="form-control" rows="3" required></textarea>
