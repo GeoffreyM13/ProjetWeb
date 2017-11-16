@@ -72,7 +72,7 @@
                 <li class="active"><a href="BlackManba.php?action=showmessage">Home</a></li>
                 <li><a href="BlackManba.php?action=profil">Profil</a></li>
                 <li><a href="BlackManba.php?action=userslist">Utilisateurs</a></li>
-                <li><a href="BlackManba.php?action=allmessage">Chat</a></li>
+                <li><a href="BlackManba.php?action=allmessage">Fils d'actualité</a></li>
             </ul>
             <ul class="nav navbar-nav navbar-right">
 
