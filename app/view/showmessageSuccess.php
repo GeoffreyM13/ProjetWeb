@@ -25,21 +25,8 @@ else $message = "Pas encore de post pour cet user !";
                 <br>
                 <h6> <?php echo $context->res->statut ?> </h6>
                 <br>
-                <ul class="nav nav-pills nav-stacked">
-                    <li class="active"><a href="#section1">Home</a></li>
-                    <li><a href="#section2">Friends</a></li>
-
-                </ul><br>
-                <div class="input-group">
-                    <input type="text" class="form-control" placeholder="Search Blog..">
-                    <span class="input-group-btn">
-                      <button class="btn btn-default" type="button">
-                        <span class="glyphicon glyphicon-search"></span>
-                    </button>
-                </span>
-            </div>
                 <div>
-                    <?php include("userslistSuccess.php"); ?>
+                    <?php include("userlistwallSuccess.php"); ?>
                 </div>
         </div>
 

@@ -5,7 +5,7 @@
 
         <div class="container">
             <div class="row profile">
-                <div class="col-md-3">
+                <div class="col-lg-offset">
                     <div class="profile-sidebar">
                         <div class="profile-userpic">
                             <img src="<?php echo (!empty($context->profil->avatar)?$context->profil->avatar:'images/no-avatar.png') ?>" class="img-responsive" alt="">
