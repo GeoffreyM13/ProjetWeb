@@ -15,8 +15,8 @@ class messageTable {
 
     $em = dbconnection::getInstance()->getEntityManager();
 
-    $userRepository = $em->getRepository('message');
-    $message = $userRepository->findBy(['emetteur'=>$id]);
+    $messageRepository = $em->getRepository('message');
+    $message = $messageRepository->findBy(['emetteur'=>$id]);
 
     if ($message == false) {
 
@@ -41,6 +41,27 @@ class messageTable {
         return $message;
     }
 
+ /*   public static function SendMessage($destinataire,$emetteur,$message){
+
+        $em = dbconnection::getInstance()->getEntityManager();
+
+        $createPost   = $em->getRepository(post);
+        $post = new post($message,$date,$image);
+        $em->persist($post);
+        $em->flush();
+
+
+        $SendingMessage = $em->getRepository(message);
+        $message = new message($emetteur, $destinataire, null, $post);
+        $em->persist($message);
+        $em->flush();
+
+        return $message;
+
+
+
+    }
+*/
 }
 
 ?>

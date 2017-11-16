@@ -9,5 +9,6 @@
 
 ?>
 
+<div class="fenetre" >
 
-<div class="fenetre" > </div>
+</div>

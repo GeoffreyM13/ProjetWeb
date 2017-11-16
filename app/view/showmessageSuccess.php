@@ -17,7 +17,14 @@ else $message = "Pas encore de post pour cet user !";
     <div class="container-fluid">
         <div class="row content">
             <div class="col-sm-3 sidenav">
-                <h4><?php echo $context->res->nom." ".$context->res->prenom ?> </h4>
+
+                <h3>
+                    <img class="image-circle" src="<?php echo (!empty($context->res->avatar)?$context->res->avatar:'images/no-avatar.png') ?>">
+                    <?php echo " ".$context->res->nom." ".$context->res->prenom ?>
+                </h3>
+                <br>
+                <h6> <?php echo $context->res->statut ?> </h6>
+                <br>
                 <ul class="nav nav-pills nav-stacked">
                     <li class="active"><a href="#section1">Home</a></li>
                     <li><a href="#section2">Friends</a></li>
@@ -36,69 +43,39 @@ else $message = "Pas encore de post pour cet user !";
                 </div>
         </div>
 
-        <div class="col-sm-9">
 
-            <?php if($context->message != false) { foreach ( $context->message as $message)
-
-            {print("<h4><small>RECENT POST(S)</small></h4>");
-            print("<hr>");
-            print("<h2>"); echo $message->post->texte; print("</h2>");
-
-            print("<h5><span class='glyphicon glyphicon-user'></span> Post by "); echo $message->emetteur->nom;print(" for "); echo $message->destinataire->nom; print("</h5>");
-            print("<h5><span class='glyphicon glyphicon-time'></span>"); echo $message->post->getDate(); print("</h5>");
-            print("<h5><span class='glyphicon glyphicon-thumbs-up'>"); if (!isset($message->aimer)) { echo "0";} else {echo $message->aimer;}   print("</span> <span class='label label-primary'>Add Pouce Bleue !</span></h5><br>");
-            print("<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
-            <br><br>");}
-
-            }
-
-            else {
-                print("<h4><small>RECENT POST(S)</small></h4>");
-                print("<hr>");
-                print("<h2>"); echo $message; print("</h2>");} ?>
-
+            <div class="col-sm-9">
 
                 <br><br>
-                <h4>Envoyer un message à <?php $_SESSION['nom']." ".$_SESSION['prenom'] ?> : </h4>
-                <form role="form">
+                <h4>Envoyer un message à <?php echo $context->res->prenom ?> : </h4>
+                <form role="form" method="POST" action="BlackManba.php?action=showmessage" >
                     <div class="form-group">
-                        <textarea class="form-control" rows="3" required></textarea>
+                        <textarea class="form-control" name="send_message" rows="2" required></textarea>
+                       
                     </div>
                     <button type="submit" class="btn btn-success">Submit</button>
                 </form>
                 <br><br>
 
-                <p><span class="badge">2</span> Comments:</p><br>
 
-                <div class="row">
-                    <div class="col-sm-2 text-center">
-                        <img src="bandmember.jpg" class="img-circle" height="65" width="65" alt="Avatar">
-                    </div>
-                    <div class="col-sm-10">
-                        <h4>Anja <small>Sep 29, 2015, 9:12 PM</small></h4>
-                        <p>Keep up the GREAT work! I am cheering for you!! Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
-                        <br>
-                    </div>
-                    <div class="col-sm-2 text-center">
-                        <img src="bird.jpg" class="img-circle" height="65" width="65" alt="Avatar">
-                    </div>
-                    <div class="col-sm-10">
-                        <h4>John Row <small>Sep 25, 2015, 8:25 PM</small></h4>
-                        <p>I am so happy for you man! Finally. I am looking forward to read about your trendy life. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
-                        <br>
-                        <p><span class="badge">1</span> Comment:</p><br>
-                        <div class="row">
-                            <div class="col-sm-2 text-center">
-                                <img src="bird.jpg" class="img-circle" height="65" width="65" alt="Avatar">
-                            </div>
-                            <div class="col-xs-10">
-                                <h4>Nested Bro <small>Sep 25, 2015, 8:28 PM</small></h4>
-                                <p>Me too! WOW!</p>
-                                <br>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+                <div class="col-lg-offset-1" style="background-color: #f8f8f8">
+                <h4>RECENT POST(S)</h4>
+
+            <?php if($context->message != false) { foreach ( $context->message as $message)
+
+            {
+            print("<hr>");
+            print("<h2>"); echo $message->post->texte; print("</h2>");
+            print("<h5><span class='glyphicon glyphicon-user'></span> Post by "); echo $message->emetteur->nom;print(" for "); echo $message->destinataire->nom; print("</h5>");
+            print("<h5><span class='glyphicon glyphicon-time'></span>"); echo $message->post->getDate(); print("</h5>");
+            print("<h5><span class='glyphicon glyphicon-thumbs-up'>"); if (!isset($message->aimer)) { echo "0";} else {echo $message->aimer;} print("</span> <span class='label label-primary'>Add Pouce Bleue !</span></h5><br>");
+            }
+
+            }
+
+            else {
+                print("<hr>");
+                print("<h2>"); echo $message; print("</h2>");} ?></div>
             </div>
         </div>
     </div>

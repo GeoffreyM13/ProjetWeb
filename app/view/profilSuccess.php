@@ -8,7 +8,7 @@
                 <div class="col-md-3">
                     <div class="profile-sidebar">
                         <div class="profile-userpic">
-                            <img src="<?php echo (!empty($context->user->avatar)?$context->user->avatar:'images/no-avatar.png') ?>" class="img-responsive" alt="">
+                            <img src="<?php echo (!empty($context->profil->avatar)?$context->profil->avatar:'images/no-avatar.png') ?>" class="img-responsive" alt="">
                         </div>
                         <div class="profile-usertitle">
                             <div class="profile-usertitle-name">

@@ -32,6 +32,7 @@ class mainController
                 context::setSessionAttribute('identifiant', $context->res->identifiant);
                 context::setSessionAttribute('nom', $context->res->nom);
                 context::setSessionAttribute('prenom', $context->res->prenom);
+                context::setSessionAttribute('statut', $context->res->statut);
                 $_SESSION['statut']= 'actif';
 
                 return $context->redirect("BlackManba.php?action=showmessage");
@@ -77,6 +78,12 @@ class mainController
             $context->message = messageTable::getMessageByUserId($_SESSION['id']);
             $context->res = utilisateurTable::getUserById($_SESSION['id']); //recup info user
             }
+
+        if(!empty($_POST['send_message'])){
+            messageTable::SendMessage($_GET['id'],$_SESSION['id'],$_POST['send_message']);
+        }
+
+
         return context::SUCCESS;
     }
 
