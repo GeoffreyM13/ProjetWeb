@@ -88,6 +88,12 @@ class mainController
 
         return context::SUCCESS;
     }
+    //Dimitri Hueber
+    public static function userlistwall($request,$context){
+        $context->users=utilisateurTable::getUsers();
+
+        return context::SUCCESS;
+    }
 
     //Martinez Geoffrey
     //20-10-17

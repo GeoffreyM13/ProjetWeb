@@ -43,7 +43,7 @@ class utilisateurTable {
 
         return $users;
     }
-    // Dimitri Hueber
+    // Dimitri Hueber, modifie le statut de l'utilisateur connecté.
     public static function updateStatut($user){
         $em = dbconnection::getInstance()->getEntityManager() ;
         $em->flush($user);
