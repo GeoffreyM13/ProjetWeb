@@ -24,6 +24,8 @@
     <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.16/css/jquery.dataTables.min.css">
     <script src="//code.jquery.com/jquery-1.12.4.js">
     </script>
+    <!--Script ci-dessous pour la liste des users dans le mur-->
+    <script src="//rawgithub.com/stidges/jquery-searchable/master/dist/jquery.searchable-1.0.0.min.js"></script>
     <script src="https://cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js">
     </script>
 <style>
