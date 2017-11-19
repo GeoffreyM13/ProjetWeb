@@ -51,7 +51,7 @@ else $message = "Pas encore de post pour cet user !";
                 <form role="form" method="POST" action="BlackManba.php?action=showmessage" >
                     <div class="form-group">
                         <textarea class="form-control" name="send_message" rows="2" required></textarea>
-                       
+
                     </div>
                     <button type="submit" class="btn btn-success">Submit</button>
                 </form>
