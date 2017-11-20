@@ -33,11 +33,19 @@ class post{
      * @Column(type="string", length=200, nullable=true)
      */
     public $image;
-
+    //martinez geoffrey - Retourne la date au bon format
     public function getDate()
     {
         return date_format($this->date, 'd-m-Y H:i');
         //return $this->date->format('Y-m-d H:i:s');
+    }
+    //martinez geoffrey - constructeur pour l'ajout d'un post utiliser dans SendMessage() messagetable.
+    public function __construct($texte='',$image='')
+    {
+        $this->texte= html_entity_decode($texte);
+        $this->image = htmlspecialchars($image);
+        $this->date = new DateTime("now");
+
     }
 }
 

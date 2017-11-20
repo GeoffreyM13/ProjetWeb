@@ -8,11 +8,10 @@
 
 if (!empty($context->message))  foreach ( $context->message as $message);
 else $message = "Pas encore de post pour cet user !";
-
-
     ?>
 
-<body>
+
+
 
     <div class="container-fluid">
         <div class="row content">
@@ -21,26 +20,34 @@ else $message = "Pas encore de post pour cet user !";
                 <h3>
                     <img class="image-circle" src="<?php echo (!empty($context->res->avatar)?$context->res->avatar:'images/no-avatar.png') ?>">
                     <?php echo " ".$context->res->nom." ".$context->res->prenom ?>
+                    <br>
+
                 </h3>
+                <span class="col-lg-offset-2" style="color: #c12e2a"> "<?php echo $context->res->statut ?>"</span>
                 <br>
-                <h6> <?php echo $context->res->statut ?> </h6>
                 <br>
                 <div>
                     <?php include("userlistwallSuccess.php"); ?>
                 </div>
+                <br>
+                <br>
+                <div>
+                    <?php include("chatSuccess.php"); ?>
+                </div>
         </div>
-
 
             <div class="col-sm-9">
 
                 <br><br>
+
+                <!-- ENVOIE DE MESSAGE - MARTINEZ GEOFFREY - -->
+
                 <h4>Envoyer un message à <?php echo $context->res->prenom ?> : </h4>
-                <form role="form" method="POST" action="BlackManba.php?action=showmessage" >
+                <form role="form" method="POST" action="BlackManba.php?action=showmessage&id=<?php echo $context->res->id ; ?>" >
                     <div class="form-group">
                         <textarea class="form-control" name="send_message" rows="2" required></textarea>
-
                     </div>
-                    <button type="submit" class="btn btn-success">Submit</button>
+                    <button type="submit" class="btn btn-success">SEND</button>
                 </form>
                 <br><br>
 
@@ -66,5 +73,4 @@ else $message = "Pas encore de post pour cet user !";
             </div>
         </div>
     </div>
-
 

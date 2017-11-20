@@ -12,8 +12,8 @@
     .image-circle-user {
         float: none;
         margin: 0 auto;
-        width: 60%;
-        height: 8%;
+        width: 40%;
+       /*height: 20%; bug de taille */
         -webkit-border-radius: 50% !important;
         -moz-border-radius: 50% !important;
         border-radius: 50% !important;
@@ -47,7 +47,7 @@
     <div class="scroll">
         
         <div class="row">
-            <div class="col-lg-12" style="max-height: 300px;">
+            <div class="col-lg-12" style="max-height: 500px;">
                 <table class="table" id="table">
                         <?php foreach($context->users as $data ){ ?>
                         <?php 

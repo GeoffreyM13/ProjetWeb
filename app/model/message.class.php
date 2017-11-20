@@ -39,6 +39,21 @@ class message{
      * @JoinColumn(name="post", referencedColumnName="id")
      */
     public $post;
+
+    public function __set($name, $value)
+    {
+        return $this->$name = $value;
+    }
+
+    public function __construct($emetteur, $destinataire, $parent, $post)
+    {
+        $this->emetteur     = $emetteur;
+        $this->destinataire = $destinataire;
+        $this->parent       = $parent;
+        $this->post         = $post;
+        $this->aime         = 0;
+    }
+
 }
 
 ?>

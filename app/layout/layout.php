@@ -41,9 +41,4 @@
 <div id="layout"> <?php echo $context->data; ?> <?php echo $context->error; ?> </div>
 
 <?php include($template_view); ?>
-
-<footer class="container-fluid">
-    <p>Footer Text</p>
-</footer>
-
 </body>

@@ -28,7 +28,6 @@ require_once "post.class.php";
 
 
 
-
 }
 
 ?>

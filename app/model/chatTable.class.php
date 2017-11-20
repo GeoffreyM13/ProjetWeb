@@ -11,7 +11,7 @@ class chatTable {
   public static function getChats(){
   	$em = dbconnection::getInstance()->getEntityManager() ;
 	  $chatRepository = $em->getRepository('chat');
-	  $chat = $chatRepository->findAll();	
+	  $chat = $chatRepository->findBy([],['id'=>'DESC'],$limit = 10 );
 	  if ($chat == false){
 		  return false;
 	  }

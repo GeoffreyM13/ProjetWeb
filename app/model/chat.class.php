@@ -1,7 +1,6 @@
 <?php
 // Create by Dimitri Hueber
 
-
 /** 
  * @Entity
  * @Table(name="fredouil.chat")
