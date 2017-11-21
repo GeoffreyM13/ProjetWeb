@@ -12,16 +12,16 @@ class chat{
 	 */ 
 	public $id;
 
-	/**
-	 *	@ManyToOne(targetEntity="post")
-	 *	@JoinColumn(name="post", referencedColumnName="id")
-	 */ 
+    /**
+     * @ManyToOne(targetEntity="post")
+     * @JoinColumn(name="post", referencedColumnName="id")
+     */
 	public $post;
-		
-	/**
-	 *	@ManyToOne(targetEntity("utilisateur"))
-	 *	@JoinColumn(name="emetteur", referencedColumnName="id")
-	 */ 
+
+    /**
+     * @ManyToOne(targetEntity="utilisateur")
+     * @JoinColumn(name="emetteur", referencedColumnName="id")
+     */
 	public $emetteur;
 
 }

@@ -29,9 +29,6 @@
     <script src="//rawgithub.com/stidges/jquery-searchable/master/dist/jquery.searchable-1.0.0.min.js"></script>
     <script src="https://cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js"></script>
 
-    <!--Script de draggable Jquery UI - Martinez GEoffrey-->
-    <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
-    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 
 <style>
 
@@ -83,6 +80,7 @@
                 <li><a href="BlackManba.php?action=profil">Profil</a></li>
                 <li><a href="BlackManba.php?action=userslist">Utilisateurs</a></li>
                 <li><a href="BlackManba.php?action=allmessage">Fils d'actualité</a></li>
+                <li><a href="BlackManba.php?action=chat">Chat</a></li>
             </ul>
             <ul class="nav navbar-nav navbar-right">
 
@@ -97,6 +95,8 @@
 <div id="layout"> <?php echo $context->data; ?> <?php echo $context->error; ?> </div>
 
 <?php include($template_view); ?>
+<!-- <?php include(app/view/chatSuccess.php); ?> -->
+
 </body>
 </html>
 <script>

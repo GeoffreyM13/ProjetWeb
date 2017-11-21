@@ -5,8 +5,6 @@
  * Date: 13/11/2017
  * Time: 11:18
  */
-
-
 ?>
 <style>
 
@@ -73,6 +71,7 @@
 
     .modal__main {
         flex: 1 1 auto;
+        width: 400px;
     }
 
 
@@ -411,7 +410,7 @@
                             <div class="message">
                                 <div class="message__head">
                                     <span class="message__note"><?= $chat->emetteur->nom; ?></span>
-                                    <span class="message__note"><?= $chat->post->date; ?></span>
+                                    <span class="message__note"><?= $chat->post->getDate(); ?></span>
                                 </div>
                                 <div class="message__base">
                                     <div class="message__avatar avatar">

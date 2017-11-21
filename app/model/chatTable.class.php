@@ -12,10 +12,11 @@ class chatTable {
   	$em = dbconnection::getInstance()->getEntityManager() ;
 	  $chatRepository = $em->getRepository('chat');
 	  $chat = $chatRepository->findBy([],['id'=>'DESC'],$limit = 10 );
+
 	  if ($chat == false){
 		  return false;
 	  }
-	  return $chat; 
+    return $chat;
   }
 
   //Dimitri Hueber

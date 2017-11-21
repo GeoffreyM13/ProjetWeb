@@ -69,14 +69,14 @@ class mainController
 
             if (isset($_GET['id'])) {
                 self::userlistwall($request,$context);
-                self::chat($request,$context);
+               // self::chat($request,$context);
                 $context->message = messageTable::getMessageByUserId($_GET['id']); //recup messages user
                 $context->res = utilisateurTable::getUserById($_GET['id']); //recup info user
             }
 
             else{
                 self::userlistwall($request,$context);
-                self::chat($request,$context);
+               //self::chat($request,$context);
             $context->message = messageTable::getMessageByUserId($_SESSION['id']);
             $context->res = utilisateurTable::getUserById($_SESSION['id']); //recup info user
             }
@@ -107,17 +107,13 @@ class mainController
     //20-10-17
     public static function allmessage($request,$context)
     {
-
         $context->allmessage = messageTable::getAllMessages();
-
         return context::SUCCESS;
     }
 
     public static function chat($request,$context)
     {
         $context->chat = chatTable::getChats();
-        var_dump($context->chat);
-        die;
         return context::SUCCESS;
     }
 

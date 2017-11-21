@@ -31,9 +31,7 @@ else $message = "Pas encore de post pour cet user !";
                 </div>
                 <br>
                 <br>
-                <div>
-                    <?php include("chatSuccess.php"); ?>
-                </div>
+
         </div>
 
             <div class="col-sm-9">
