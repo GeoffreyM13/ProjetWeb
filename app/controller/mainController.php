@@ -59,7 +59,7 @@ class mainController
     {
         unset($_SESSION['statut']);
         session_destroy();
-        return context::NONE;
+        return context::SUCCESS;
     }
 
     //Martinez Geoffrey
@@ -143,10 +143,6 @@ class mainController
             utilisateurTable::updateStatut($context->profil);
         }
         return context::SUCCESS;
-    }
-
-    public static function logornot($request,$context){
-
     }
 
 }
