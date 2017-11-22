@@ -24,6 +24,20 @@ class messageTable {
     }
     return $message;
     }
+    //Dimitri Hueber
+    public static function getMessageByUserIdDestinataire($id){
+
+    $em = dbconnection::getInstance()->getEntityManager();
+
+    $messageRepository = $em->getRepository('message');
+    $message = $messageRepository->findBy(['destinataire'=>$id],['id'=>'DESC']);
+
+    if ($message == false) {
+
+        return false;
+    }
+    return $message;
+    }
 
     //Martinez Geoffrey
     // permet de retourner les 10 derniers messages poster

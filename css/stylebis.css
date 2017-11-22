@@ -80,6 +80,20 @@ body {
   -moz-border-radius: 50% !important;
   border-radius: 50% !important;
 }
+/*Ci-dessous pour l'image sur la page profil*/
+.profile-userpic-profil img{
+  float: none;
+  margin: 0 auto;
+  width: 20%;
+  height: 20%;
+  -webkit-border-radius: 50% !important;
+  -moz-border-radius: 50% !important;
+  border-radius: 50% !important;
+}
+/*Ci-dessous pour l'alignement des td de la userlist*/
+.tduserlist{
+  width: 25%;
+}
 
 .profile-usertitle {
   text-align: center;

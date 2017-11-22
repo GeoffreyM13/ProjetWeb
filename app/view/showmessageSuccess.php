@@ -31,8 +31,7 @@ else $message = "Pas encore de post pour cet user !";
                 </div>
                 <br>
                 <br>
-
-        </div>
+            </div>
 
             <div class="col-sm-9">
 
@@ -51,23 +50,78 @@ else $message = "Pas encore de post pour cet user !";
 
 
                 <div class="col-lg-offset-1" style="background-color: #f8f8f8">
-                <h4>RECENT POST(S)</h4>
+                <h4>Message Envoyés</h4>
 
-            <?php if($context->message != false) { foreach ( $context->message as $message)
+                <?php 
+                if($context->message != false) {
+                    foreach ( $context->message as $message)
+                    {
+                        echo "<hr>";
+                            echo "<h2>"; 
+                                echo $message->post->texte;
+                            echo "</h2>";
+                            echo "<h5><span class='glyphicon glyphicon-user'></span> Post by ";
+                                echo $message->emetteur->nom;
+                                echo " for ";
+                                echo $message->destinataire->nom;
+                            echo "</h5>";
+                            echo "<h5><span class='glyphicon glyphicon-time'></span>";
+                                echo $message->post->getDate();
+                            echo "</h5>";
+                            echo "<h5><span class='glyphicon glyphicon-thumbs-up'>";
+                                if(!isset($message->aimer)){
+                                    echo "0";
+                                } 
+                                else {
+                                    echo $message->aimer;
+                                } 
+                            echo "</span> <span class='label label-primary'>Add Pouce Bleue !</span></h5><br>";
+                    }
+                }
+                else {
+                    echo "<hr>";
+                    echo "<h2>";
+                    echo $message;
+                    echo "</h2>";
+                } ?>
+                </div>
+            </div>
+            <!--Fait par Dimitri Hueber, Récupère les messages envoyé à cette utilisateur-->
+            <div class="col-lg-offset-1" style="background-color: #f8f8f8">
+                <h4>Message Reçus</h4>
 
-            {
-            print("<hr>");
-            print("<h2>"); echo $message->post->texte; print("</h2>");
-            print("<h5><span class='glyphicon glyphicon-user'></span> Post by "); echo $message->emetteur->nom;print(" for "); echo $message->destinataire->nom; print("</h5>");
-            print("<h5><span class='glyphicon glyphicon-time'></span>"); echo $message->post->getDate(); print("</h5>");
-            print("<h5><span class='glyphicon glyphicon-thumbs-up'>"); if (!isset($message->aimer)) { echo "0";} else {echo $message->aimer;} print("</span> <span class='label label-primary'>Add Pouce Bleue !</span></h5><br>");
-            }
-
-            }
-
-            else {
-                print("<hr>");
-                print("<h2>"); echo $message; print("</h2>");} ?></div>
+                <?php 
+                if($context->messageDestinataire != false) {
+                    foreach ( $context->messageDestinataire as $messageDestinataire)
+                    {
+                        echo "<hr>";
+                            echo "<h2>"; 
+                                echo $messageDestinataire->post->texte;
+                            echo "</h2>";
+                            echo "<h5><span class='glyphicon glyphicon-user'></span> Post by ";
+                                echo $messageDestinataire->emetteur->nom;
+                                echo " for ";
+                                echo $messageDestinataire->destinataire->nom;
+                            echo "</h5>";
+                            echo "<h5><span class='glyphicon glyphicon-time'></span>";
+                                echo $messageDestinataire->post->getDate();
+                            echo "</h5>";
+                            echo "<h5><span class='glyphicon glyphicon-thumbs-up'>";
+                                if(!isset($messageDestinataire->aimer)){
+                                    echo "0";
+                                } 
+                                else {
+                                    echo $messageDestinataire->aimer;
+                                } 
+                            echo "</span> <span class='label label-primary'>Add Pouce Bleue !</span></h5><br>";
+                    }
+                }
+                else {
+                    echo "<hr>";
+                    echo "<h2>";
+                    echo $messageDestinataire;
+                    echo "</h2>";
+                } ?>
             </div>
         </div>
     </div>

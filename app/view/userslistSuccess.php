@@ -3,8 +3,8 @@
     .image-circle {
         float: none;
         margin: 0 auto;
-        width: 8%;
-        height: 8%;
+        width: 9%;
+        height: 9%;
         -webkit-border-radius: 50% !important;
         -moz-border-radius: 50% !important;
         border-radius: 50% !important;
@@ -33,10 +33,10 @@
             if ($data->nom!=context::getSessionAttribute('nom') && $data->prenom!=context::getSessionAttribute('prenom') && $data->identifiant!=context::getSessionAttribute('identifiant')){
                 ?>
                 <tr>
-                    <td><a href="BlackManba.php?action=showmessage&id=<?php echo $data->id ?>"><?php echo $data->nom ?></a></td>
-                    <td><?php echo $data->prenom ?></td>
-                    <td><?php echo $data->identifiant ?></td>
-                    <td><a href="BlackManba.php?action=showmessage&id=<?php echo $data->id ?>"><img class="image-circle" src="<?php echo (!empty($data->avatar)?$data->avatar:'images/no-avatar.png') ?>"></a></td>
+                    <td class="tduserlist"><a href="BlackManba.php?action=showmessage&id=<?php echo $data->id ?>"><?php echo $data->nom ?></a></td>
+                    <td class="tduserlist"><a href="BlackManba.php?action=showmessage&id=<?php echo $data->id ?>"><?php echo $data->prenom ?></a></td>
+                    <td class="tduserlist"><a href="BlackManba.php?action=showmessage&id=<?php echo $data->id ?>"><?php echo $data->identifiant ?></a></td>
+                    <td class="tduserlist"><a href="BlackManba.php?action=showmessage&id=<?php echo $data->id ?>"><img class="image-circle" src="<?php echo (!empty($data->avatar)?$data->avatar:'images/no-avatar.png') ?>"></a></td>
                 </tr>
             <?php } ?>
             <?php } ?>

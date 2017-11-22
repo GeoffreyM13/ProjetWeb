@@ -55,7 +55,7 @@
                         ?>
                         <tr>
                             <td><a href="BlackManba.php?action=showmessage&id=<?php echo $data->id ?>"><img class="image-circle-user" src="<?php echo (!empty($data->avatar)?$data->avatar:'images/no-avatar.png') ?>"></a></td>
-                            <td><?php echo $data->prenom ?></td>
+                            <td><a href="BlackManba.php?action=showmessage&id=<?php echo $data->id ?>"><?php echo $data->prenom ?></a></td>
                             <td><a href="BlackManba.php?action=showmessage&id=<?php echo $data->id ?>"><?php echo $data->nom ?></a></td>
                         </tr>
                         <?php }} ?>
