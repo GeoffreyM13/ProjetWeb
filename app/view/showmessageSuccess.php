@@ -11,14 +11,9 @@ else $message = "Pas encore de post pour cet user !";
 if (!empty($context->messageDestinataire))  foreach ( $context->messageDestinataire as $messageDestinataire);
 else $messageDestinataire = "Personne n'a écrit à cet user !";
 ?>
-<style type="text/css">
-    .row-content{
-        max-height: 80%;
-    }
-</style>
 
-<div class="container-fluid" style="max-height: 100%">
-    <div class="row-content">
+
+<div class="container-fluid">
         <div class="col-sm-3 sidenav">
             <h3>
                 <img class="image-circle" src="<?php echo (!empty($context->res->avatar)?$context->res->avatar:'images/no-avatar.png') ?>">
@@ -35,8 +30,6 @@ else $messageDestinataire = "Personne n'a écrit à cet user !";
             <br>
         </div>
         <div class="col-sm-9">
-            <br><br>
-
             <!-- ENVOIE DE MESSAGE - MARTINEZ GEOFFREY - -->
 
             <h4>Envoyer un message à <?php echo $context->res->prenom ?> : </h4>
@@ -46,12 +39,12 @@ else $messageDestinataire = "Personne n'a écrit à cet user !";
                 </div>
                 <button type="submit" class="btn btn-success">SEND</button>
             </form>
-            <br><br>
-            <div class="col-lg-offset-1">
+            <br>
+            <div class="col-lg-offset-3">
                 <button onclick="showPane('messageenvoyer')">Message Envoyés</button><button onclick="showPane('messagerecu')">Message Reçus</button>
             </div>
             <div id="message">
-                <div class="col-lg-offset-1" id="messageenvoyer" style="background-color: #f8f8f8">
+                <div id="messageenvoyer" style="background-color: #f8f8f8">
                     <h4>Message Envoyés</h4>
                     <?php 
                     if($context->message != false) {
@@ -87,7 +80,7 @@ else $messageDestinataire = "Personne n'a écrit à cet user !";
                     } ?>
                 </div>
                 <!--Fait par Dimitri Hueber, Récupère les messages envoyé à cette utilisateur-->
-                <div class="col-lg-offset-1" id="messagerecu" style="background-color: #f8f8f8;display: none">
+                <div id="messagerecu" style="background-color: #f8f8f8;display: none">
                     <h4>Message Reçus</h4>
 
                     <?php 
@@ -124,7 +117,6 @@ else $messageDestinataire = "Personne n'a écrit à cet user !";
                     } ?>
                 </div>
             </div>
-        </div>
     </div>
     <!--Fait par Dimitri Hueber-->
     <script type="text/javascript">

@@ -59,7 +59,7 @@ class mainController
     {
         unset($_SESSION['statut']);
         session_destroy();
-        return context::SUCCESS;
+        return $context->redirect("BlackManba.php?action=login");
     }
 
     //Martinez Geoffrey
@@ -98,18 +98,14 @@ class mainController
     //Martinez Geoffrey
     //20-10-17
     public static function userslist($request,$context){
-        if($_SESSION['prenom']==null || $_SESSION['nom']==null){
-            return $context->redirect("BlackManba.php?action=login");
-        }
+        self::logornot($request,$context);
         $context->users=utilisateurTable::getUsers();
 
         return context::SUCCESS;
     }
     //Dimitri Hueber
     public static function userlistwall($request,$context){
-        if($_SESSION['prenom']==null || $_SESSION['nom']==null){
-            return $context->redirect("BlackManba.php?action=login");
-        }
+        self::logornot($request,$context);
         $context->users=utilisateurTable::getUsers();
         return context::SUCCESS;
     }
@@ -117,32 +113,32 @@ class mainController
     //Martinez Geoffrey
     //20-10-17
     public static function allmessage($request,$context){
-        if($_SESSION['prenom']==null || $_SESSION['nom']==null){
-            return $context->redirect("BlackManba.php?action=login");
-        }
+        self::logornot($request,$context);
         $context->allmessage = messageTable::getAllMessages();
         return context::SUCCESS;
     }
 
     public static function chat($request,$context){
-        if($_SESSION['prenom']==null || $_SESSION['nom']==null){
-            return $context->redirect("BlackManba.php?action=login");
-        }
+        self::logornot($request,$context);
         $context->chat = chatTable::getChats();
         return context::SUCCESS;
     }
 
     //Dimitri Hueber, permet de récupérer le profil de l'utilisateur connecté
     public static function profil($request,$context){
-        if($_SESSION['prenom']==null || $_SESSION['nom']==null){
-            return $context->redirect("BlackManba.php?action=login");
-        }
+        self::logornot($request,$context);
         $context->profil=utilisateurTable::getUserById($_SESSION['id']);
         if(!empty($request['modif_statut'])){
             $context->profil->statut=strip_tags($request['modif_statut']);
             utilisateurTable::updateStatut($context->profil);
         }
         return context::SUCCESS;
+    }
+
+    public static function logornot($request,$context){
+        if($_SESSION['prenom']==null || $_SESSION['nom']==null){
+            return $context->redirect("BlackManba.php?action=login");
+        }
     }
 
 }

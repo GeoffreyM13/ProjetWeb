@@ -16,7 +16,7 @@ class messageTable {
     $em = dbconnection::getInstance()->getEntityManager();
 
     $messageRepository = $em->getRepository('message');
-    $message = $messageRepository->findBy(['emetteur'=>$id],['id'=>'DESC']);
+    $message = $messageRepository->findBy(['emetteur'=>$id],['id'=>'DESC'],$limit = 10);
 
     if ($message == false) {
 
@@ -30,7 +30,7 @@ class messageTable {
     $em = dbconnection::getInstance()->getEntityManager();
 
     $messageRepository = $em->getRepository('message');
-    $message = $messageRepository->findBy(['destinataire'=>$id],['id'=>'DESC']);
+    $message = $messageRepository->findBy(['destinataire'=>$id],['id'=>'DESC'],$limit = 10);
 
     if ($message == false) {
 
