@@ -47,11 +47,11 @@ class message{
 
     public function __construct($emetteur, $destinataire, $parent, $post)
     {
-        $this->emetteur     = $emetteur;
+        $this->emetteur = $emetteur;
         $this->destinataire = $destinataire;
-        $this->parent       = $parent;
-        $this->post         = $post;
-        $this->aime         = 0;
+        $this->parent = $parent;
+        $this->post = $post;
+        $this->aime = 0;
     }
 
 }

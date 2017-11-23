@@ -25,7 +25,7 @@
             </div>
             <div class="span6">
                 <p style="background-color: #f8f8f8">
-                    <?= $message->post->texte; ?>
+                    <?php echo htmlentities($message->post->texte); ?>
                 </p>
             </div>
         </div>
@@ -33,7 +33,7 @@
             <div class="span8">
                 <p></p>
                 <p>
-                    <i class="icon-user"></i> by <a href="#"> <?= $message->emetteur->nom; ?> </a>
+                    <i class="icon-user"></i> by <a href="#"> <?=  $message->emetteur->nom; ?> </a>
                     || <i class="icon-calendar"> On : <?= $message->post->getDate(); ?> </i>
                     |  For : <?= $message->destinataire->nom; ?>
                 </p>
