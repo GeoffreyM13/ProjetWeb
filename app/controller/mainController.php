@@ -128,7 +128,14 @@ class mainController
         if($_SESSION['prenom']==null || $_SESSION['nom']==null){
             return $context->redirect("BlackManba.php?action=login");
         }
+
         $context->chat = chatTable::getChats();
+
+        if(!empty($_POST['send_chat'])){
+            chatTable::SendChat($_SESSION['id'],$_POST['send_chat']); // to , by , text
+            header("Refresh:0");
+        }
+
         return context::SUCCESS;
     }
 

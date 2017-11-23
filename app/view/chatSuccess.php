@@ -5,6 +5,7 @@
  * Date: 13/11/2017
  * Time: 11:18
  */
+
 ?>
 <style>
 
@@ -153,7 +154,7 @@
         table-layout: fixed;
         box-sizing: border-box;
         width: 100%;
-        padding: 0 26px;
+        padding: 0 14px;
 
     }
 
@@ -395,12 +396,18 @@
             <div class="modal__main" >
                 <div class="chatbox">
                     <div class="chatbox__row">
+
                         <div class="head">
-                            <div class="head__title">CHAT</div>
-                            <div class="head__note">
-                                <span>Filtre...</span>
-                                <span class="head__icon"></span>
+
+                            <div class="enter__textarea">
+                                <form role="form" method="POST" action="BlackManba.php?action=chat" >
+                                    <textarea name="send_chat" class="form-control" cols="30" rows="2" placeholder="Say message..."></textarea>
+                                    <input class="button" type="submit">
+                                </form>
+
                             </div>
+
+
                         </div>
                     </div>
                     <?php foreach($context->chat as $chat): ?>
@@ -414,36 +421,20 @@
                                 </div>
                                 <div class="message__base">
                                     <div class="message__avatar avatar">
-                                        <a href="#" class="avatar__wrap">
-                                            <img class="avatar__img" src="http://placehold.it/35x35" width="35" height="35" alt="avatar image">
-                                        </a>
+                                            <img src="<?php echo (!empty($chat->emetteur->avatar)?$chat->emetteur->avatar:'images/no-avatar.png') ?>"  width="35" height="35" alt="avatar image">
                                     </div>
                                     <div class="message__textbox">
                                         <span class="message__text"><?= $chat->post->texte; ?></span>
-                                        <img class="message__smiley" src="http://www.pic4ever.com/images/14k8gag.gif" border="0">
                                     </div>
-                                </div>
                             </div>
                             <?php endforeach; ?>
                     <div class="chatbox__row">
-                        <div class="enter">
-                            <div class="enter__submit">
-                                <button class="button button_id_submit" type="submit">
-                                    <i class="fa fa-paper-plane" aria-hidden="true"></i>
-                                </button>
-                            </div>
-                            <div class="enter__textarea">
-                                <textarea name="enterMessage" id="enterMessage" cols="30" rows="2" placeholder="Say message..."></textarea>
-                            </div>
-                            <div class="enter__icons">
-                                <a href="#" class="enter__icon">
-                                    <i class="fa fa-paperclip" aria-hidden="true"></i>
-                                </a>
-                                <a href="#" class="enter__icon">
-                                    <i class="fa fa-smile-o" aria-hidden="true"></i>
-                                </a>
-                            </div>
-                        </div>
+
+
+
+
+
+
                     </div>
 
 
