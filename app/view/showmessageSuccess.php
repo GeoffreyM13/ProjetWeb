@@ -52,7 +52,7 @@ else $messageDestinataire = "Personne n'a écrit à cet user !";
                         {
                             echo "<hr>";
                             echo "<h2>"; 
-                            echo $message->post->texte;
+                            echo htmlentities($message->post->texte);
                             echo "</h2>";
                             echo "<h5><span class='glyphicon glyphicon-user'></span> Post by ";
                             echo $message->emetteur->nom;
@@ -89,7 +89,7 @@ else $messageDestinataire = "Personne n'a écrit à cet user !";
                         {
                             echo "<hr>";
                             echo "<h2>"; 
-                            echo $messageDestinataire->post->texte;
+                            echo htmlentities($messageDestinataire->post->texte);
                             echo "</h2>";
                             echo "<h5><span class='glyphicon glyphicon-user'></span> Post by ";
                             echo $messageDestinataire->emetteur->nom;
