@@ -121,6 +121,12 @@ class mainController
     public static function chat($request,$context){
         self::logornot($request,$context);
         $context->chat = chatTable::getChats();
+
+        if(!empty($_POST['send_chat'])){
+            chatTable::SendChat($_SESSION['id'],$_POST['send_chat']); // to , by , text
+            header("Refresh:0");
+        }
+
         return context::SUCCESS;
     }
 

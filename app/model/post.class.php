@@ -39,7 +39,7 @@ class post{
         return date_format($this->date, 'd-m-Y H:i');
         //return $this->date->format('Y-m-d H:i:s');
     }
-    //martinez geoffrey - constructeur pour l'ajout d'un post utiliser dans SendMessage() messagetable.
+    //martinez geoffrey - constructeur pour l'ajout d'un post utiliser dans SendMessage() messagetable./chattable
     public function __construct($texte='',$image='')
     {
         $this->texte= html_entity_decode($texte);

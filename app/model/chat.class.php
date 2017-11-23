@@ -24,6 +24,13 @@ class chat{
      */
 	public $emetteur;
 
+    public function __construct($post, $emetteur)
+    {
+        $this->emetteur     = $emetteur;
+        $this->post         = $post;
+
+    }
+
 }
 
 ?>
