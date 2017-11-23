@@ -26,9 +26,13 @@ else $messageDestinataire = "Personne n'a écrit à cet user !";
             <div>
                 <?php include("userlistwallSuccess.php"); ?>
             </div>
-            <br>
-            <br>
+            <!--martinez geoffrey - inclusion du chat-->
+            <div>
+                <?php include("chatSuccess.php"); ?>
+            </div>
+
         </div>
+
         <div class="col-sm-9">
             <!-- ENVOIE DE MESSAGE - MARTINEZ GEOFFREY - -->
 

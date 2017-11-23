@@ -27,11 +27,13 @@
     }
 
 
-
-
     .modal__dialog {
-        width: 400px;
-        position: relative;
+        height: 530px;
+        width: 412px;
+        position: absolute;
+        z-index: 1;
+        left: 0;
+        margin-top: 2%;
     }
 
 
@@ -43,14 +45,10 @@
         vertical-align: top;
     }
 
-
-
     .modal__main {
         flex: 1 1 auto;
         width: 400px;
     }
-
-
 
     .chat {
         display: flex;
@@ -112,12 +110,7 @@
         left: 0;
         top: 100%;
     }
-
-message block */
-
-    .message {}
-
-    .message__head {
+     .message__head {
         display: flex;
         justify-content: space-between;
         padding: 12px 80px 10px 82px;
@@ -171,11 +164,32 @@ message block */
 
 
 </style>
+<!--martinez geoffrey - draggable et resize du chat avec jquery ui -->
+<script>
 
-    <div class= "modal__dialog">
-        <div class="modal__content chat">
+$( function() {
+$( "#draggable" ).draggable().resizable({minHeight: 150,
+    minWidth: 357});
+});
+
+$(document).ready(function(){
+    $("#hide").click(function(){
+        $("#draggable").hide();
+    });
+    $("#show").click(function(){
+        $("#draggable").show();
+    });
+});
+</script>
+
+
+<button id="hide">Hide</button>
+<button id="show">Show</button>
+
+    <div class= "modal__dialog ui-widget-content" id="draggable">
+        <div class="modal__content chat" >
             <div class="modal__main" >
-                <div class="chatbox">
+                <div class="chatbox" >
                     <div class="chatbox__row">
 
                         <div class="head">
@@ -191,7 +205,7 @@ message block */
 
                         </div>
                     </div>
-                    <div class="chatbox__row chatbox__row_fullheight">
+                    <div class="chatbox__row chatbox__row_fullheight " >
 
                     <?php foreach($context->chat as $chat): ?>
                         <div class="message">

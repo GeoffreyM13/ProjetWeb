@@ -72,7 +72,7 @@ class mainController
 
             if (isset($_GET['id'])) {
                 self::userlistwall($request,$context);
-               // self::chat($request,$context);
+                self::chat($request,$context);
                 $context->message = messageTable::getMessageByUserId($_GET['id']); //recup messages user
                 $context->messageDestinataire = messageTable::getMessageByUserIdDestinataire($_GET['id']);
                 $context->res = utilisateurTable::getUserById($_GET['id']); //recup info user
@@ -80,7 +80,7 @@ class mainController
 
             else{
                 self::userlistwall($request,$context);
-               //self::chat($request,$context);
+                self::chat($request,$context);
             $context->message = messageTable::getMessageByUserId($_SESSION['id']);
             $context->messageDestinataire = messageTable::getMessageByUserIdDestinataire($_SESSION['id']);
             $context->res = utilisateurTable::getUserById($_SESSION['id']); //recup info user

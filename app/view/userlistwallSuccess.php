@@ -24,6 +24,7 @@
     }
     .scroll{
         overflow-y: scroll;
+        overflow-x: hidden;
         max-height: 50%;
         width: 100%;
     }

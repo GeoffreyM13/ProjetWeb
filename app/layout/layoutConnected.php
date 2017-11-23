@@ -30,11 +30,13 @@
     <script src="https://cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js"></script>
 
     <script src="js/test.js"></script>
-<style>
+
+    <link rel="stylesheet" href="jqueryui/jquery-ui.min.css">
+    <script src="jqueryui/jquery.js"></script>
+    <script src="jqueryui/jquery-ui.min.js"></script>
 
 
-
-
+    <style>
     /* Set height of the grid so .sidenav can be 100% (adjust if needed) */
     .row.content {height: 1500px}
 
