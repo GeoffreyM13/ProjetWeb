@@ -46,9 +46,12 @@ elseif($view==context::NONE){
     if (isset($_SESSION['statut']))
     {
 
+
         include($nameApp."/layout/layoutConnected.php");
     }
     else {
+
+
 
         include($nameApp . "/layout/" . $context->getLayout() . ".php");
     }

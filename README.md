@@ -22,3 +22,7 @@ Faire une nouvelle branche pour chaque Tp puis la merge .
     
     -git pull origin master 
     
+#A faire 
+
+    -Tout l'ajax !
+    

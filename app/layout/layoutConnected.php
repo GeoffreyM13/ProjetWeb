@@ -78,15 +78,15 @@
         </div>
         <div class="collapse navbar-collapse" id="myNavbar">
             <ul class="nav navbar-nav">
-                <li class="active"><a href="BlackManba.php?action=showmessage">Home</a></li>
-                <li><a href="BlackManba.php?action=profil">Profil</a></li>
-                <li><a href="BlackManba.php?action=userslist">Utilisateurs</a></li>
-                <li><a href="BlackManba.php?action=allmessage">Fils d'actualité</a></li>
+                <li <?php if ($context->navbar_etat == "showmessage") {?> class ="active" <?php } ?> ><a href="BlackManba.php?action=showmessage">Home</a> </li>
+                <li <?php if ($context->navbar_etat == "profil") {?> class ="active" <?php } ?> ><a href="BlackManba.php?action=profil">Profil</a></li>
+                <li <?php if ($context->navbar_etat == "userslist") {?> class ="active" <?php } ?> ><a href="BlackManba.php?action=userslist">Utilisateurs</a></li>
+                <li <?php if ($context->navbar_etat == "allmessage") {?> class ="active" <?php } ?> ><a href="BlackManba.php?action=allmessage">Fils d'actualité</a></li>
                 <li><a href="BlackManba.php?action=chat">Chat</a></li>
             </ul>
             <ul class="nav navbar-nav navbar-right">
 
-                <li> <a class="navbar-brand" href="#"> Hi, <?php echo $_SESSION['identifiant'];?> ! </a></li>
+                <li> <a class="navbar-brand" href="#"> Welcome Back, <?php echo $_SESSION['identifiant'];?> ! </a></li>
                 <li><button id="Submit" style="background-color:gainsboro"><span class="glyphicon glyphicon-log-out" ></span> Logout</button></li>
             </ul>
         </div>
