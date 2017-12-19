@@ -199,10 +199,10 @@ see  https://v4-alpha.getbootstrap.com/layout/responsive-utilities/ -->
                         <div class="head">
 
                             <div class="enter__textarea">
-                                <!--<form role="form" method="POST" action="BlackManba.php?action=chat" > -->
-                                <form id ="chat">
-                                    <input type="textarea" id="send_chat" class="form-control" cols="30" rows="2" placeholder="Say message..."></input>
+                                <form role="form" method="POST" action="BlackManba.php" >
+                                <input type="textarea" id="send_chat" class="form-control" cols="30" rows="2" placeholder="Say message..."></input>
                                 <button class="button" type="submit" id="send_message">Send</button>
+                                <input type="hidden" name="action" value="chat">
                                 </form>
 
                             </div>
@@ -241,7 +241,6 @@ see  https://v4-alpha.getbootstrap.com/layout/responsive-utilities/ -->
     </div>
 
 <script>
- /*   // Envoie un nouveau chat en ajax
     $( "#chat" ).submit(function( event ) {
 
         // Stop form from submitting normally
@@ -257,8 +256,6 @@ see  https://v4-alpha.getbootstrap.com/layout/responsive-utilities/ -->
         $.('.messaeg__text').append(term);
 
     });
-*/
-/*MARCHE MAIS RETOURNE SUR LA PAGE LOGIN A CHAQUE FOIS !!!*/
     $(function() {
         $('#send_message').click(function() {
 
