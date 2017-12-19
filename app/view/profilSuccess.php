@@ -8,7 +8,7 @@
                 <div class="col-lg-offset">
                     <div class="profile-sidebar">
                         <div class="profile-userpic-profil">
-                            <img src="<?php echo htmlspecialchars(!empty($context->profil->avatar)?$context->profil->avatar:'images/no-avatar.png') ?>" class="img-responsive" alt="">)
+                            <img src="<?php echo htmlspecialchars(!empty($context->profil->avatar)?$context->profil->avatar:'images/no-avatar.png') ?>" class="img-responsive" alt="">
                         </div>
                         <div class="profile-usertitle">
                             <div class="profile-usertitle-name">
@@ -24,8 +24,8 @@
                               if($context->profil->id==$_SESSION['id']){?>
                             <div>
                               <form method="POST" action="BlackManba.php?action=profil">
-                                <input type="text" name="modif_statut" placeholder="Nouveu Statut">
-                                <button type="submit"><span class="glyphicon glyphicon-pencil" ></span></button>
+                                <input type="text" name="modif_statut" id="modif_statut" placeholder="Nouveu Statut">
+                                <button type="submit" class="change_statut" onclick="changement_statut()"><span class="glyphicon glyphicon-pencil" ></span></button>
                               </form>
                             </div>
                             <?php }?>
