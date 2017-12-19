@@ -205,10 +205,10 @@ see  https://v4-alpha.getbootstrap.com/layout/responsive-utilities/ -->
                         <div class="head">
 
                             <div class="enter__textarea">
-                                <form role="form" method="POST" action="BlackManba.php" >
-                                <input type="textarea" id="send_chat" class="form-control" cols="30" rows="2" placeholder="Say message..."></input>
+                                <form role="form" id="chat" method="POST" action="BlackManba.php" >
+                                <input type="textarea" id="send_chat" class="form-control" cols="30" rows="2" placeholder="Say message..." name="send_chat"></input>
                                 <button class="button" type="submit" id="send_message">Send</button>
-                                <input type="hidden" name="action" value="chat">
+                                <input type="hidden" name="action" value="<?php echo $action ?>">
                                 </form>
 
                             </div>
@@ -216,7 +216,7 @@ see  https://v4-alpha.getbootstrap.com/layout/responsive-utilities/ -->
 
                         </div>
                     </div>
-                    <div class="chatbox__row chatbox__row_fullheight "  >
+                    <div id="chatbox_messages" class="chatbox__row chatbox__row_fullheight "  >
 
                     <?php foreach($context->chat as $chat): ?>
                         <div class="message">
@@ -245,41 +245,36 @@ see  https://v4-alpha.getbootstrap.com/layout/responsive-utilities/ -->
             </div>
         </div>
     </div>
-
+<!--Fait par Dimitri HUEBER -->
 <script>
-    $( "#chat" ).submit(function( event ) {
-
-        // Stop form from submitting normally
-        event.preventDefault();
-
-        // Get some values from elements on the page:
-        var $form = $( this ),
-            term = $form.find( "input[name='send_chat']" ).val(),
-            url = $form.attr( "action" );
-
-        // Send the data using post
-        $.post( "../ProjetWeb/BlackManbaAjax.php?action=chat", { send_chat: term } );
-        $.('.messaeg__text').append(term);
-
-    });
     $(function() {
-        $('#send_message').click(function() {
+        $('#chat').submit(function( event ) {
+            // Stop form from submitting normally
+            event.preventDefault();
 
-            var message = $('#send_chat').val();
+            // Get some values from elements on the page:
+            var $formVal = $(this).find( "input[name='send_chat']" )
+            var term = $formVal.val();
 
-            $.ajax({
-                type: "POST",
-                url: "../ProjetWeb/BlackManbaAjax.php?action=chat",
-                data:{ 'send_chat' : message }
+            if (term == '') {
+                return;
+            }
 
-            });
+            // Send the data using post
+            $.post('./BlackManbaAjax.php?action=chat', { send_chat: term } )
+            .done(function (data) {
+                data = JSON.parse(data);
 
-            .done(
-            function(data){
-                console.log(data);
-                $(".message__text".html()+data);
-            });
+                $formVal.val('');
+                $('#chatbox_messages').load('./BlackManbaAjax.php?action=chat #chatbox_messages')
+            })
+
+            return false;
         });
+
+        setInterval(function () {
+            $('#chatbox_messages').load('./BlackManbaAjax.php?action=chat #chatbox_messages')
+        }, 5000);
     });
 
 </script>

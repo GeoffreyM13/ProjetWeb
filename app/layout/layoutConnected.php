@@ -32,7 +32,6 @@
     <script src="js/test.js"></script>
 
     <link rel="stylesheet" href="jqueryui/jquery-ui.min.css">
-    <script src="jqueryui/jquery.js"></script>
     <script src="jqueryui/jquery-ui.min.js"></script>
 
 

@@ -19,6 +19,7 @@ session_start();
 
 $context = context::getInstance();
 $context->init($nameApp);
+$context->type = 'normal';
 
 /*$user = $context->getSessionAttribute('user_id') ;
 if(!isset($user) || $user == NULL){

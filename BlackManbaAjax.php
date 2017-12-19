@@ -26,6 +26,7 @@ session_start();
 
 $context = context::getInstance();
 $context->init($nameApp);
+$context->type = 'ajax';
 
 /*$user = $context->getSessionAttribute('user_id') ;
 if(!isset($user) || $user == NULL){
@@ -41,21 +42,8 @@ if($view===false){
 }
 
 //inclusion du layout qui va lui meme inclure le template view
-elseif($view==context::NONE){
-
-    if (isset($_SESSION['statut']))
-    {
-
-
-        include($nameApp."/layout/layoutConnected.php");
-    }
-    else {
-
-
-
-        include($nameApp . "/layout/" . $context->getLayout() . ".php");
-    }
-
+elseif($view!==context::NONE){
+    include($nameApp."/view/".$action.$view.".php");
 }
 
 ?>

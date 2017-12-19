@@ -37,9 +37,9 @@ else $messageDestinataire = "Personne n'a écrit à cet user !";
             <!-- ENVOIE DE MESSAGE - MARTINEZ GEOFFREY - -->
 
             <h4>Envoyer un message à <?php echo $context->res->prenom ?> : </h4>
-            <form role="form" method="POST" action="BlackManba.php?action=showmessage&id=<?php echo $context->res->id ; ?>" >
+            <form role="form" method="POST" id="message_textarea" action="BlackManba.php?action=showmessage&id=<?php echo $context->res->id ; ?>" >
                 <div class="form-group">
-                    <textarea class="form-control" name="send_message" rows="2" required></textarea>
+                    <textarea class="form-control" name="send_message" id="send_message" rows="2" required></textarea>
                 </div>
                 <button type="submit" class="btn btn-success">SEND</button>
             </form>
@@ -139,5 +139,33 @@ else $messageDestinataire = "Personne n'a écrit à cet user !";
                     }
             }
         }
+
+    $(function() {
+        $('#message_textarea').submit(function( event ) {
+            // Stop form from submitting normally
+            event.preventDefault();
+
+            // Get some values from elements on the page:
+            var $formVal = $(this).find( "textarea[name='send_message']" )
+            var term = $formVal.val();
+
+            if (term == '') {
+                return;
+            }
+
+            // Send the data using post
+            $.post('BlackManbaAjax.php?action=showmessage&id=<?php echo $context->res->id ?>', { send_message: term } )
+            .done(function (data) {
+                data = JSON.parse(data);
+
+                $formVal.val('');
+                $('#message').load('./BlackManbaAjax.php?action=showmessage&id=<?php echo $context->res->id ?> #message')
+            })
+
+            return false;
+        });
+
+    });
+
     </script>
 
