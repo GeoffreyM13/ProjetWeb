@@ -28,8 +28,8 @@
 
 
     .modal__dialog {
-        height: 530px;
-        width: 412px;
+        width : 100%;
+        height: auto;
         position: absolute;
         z-index: 1;
         left: 0;
@@ -113,7 +113,7 @@
      .message__head {
         display: flex;
         justify-content: space-between;
-        padding: 12px 80px 10px 82px;
+        padding: 5% 8% 0% 15%;
     }
 
     .message__note {
@@ -182,12 +182,16 @@ $(document).ready(function(){
 });
 </script>
 
+<!-- MARTINEZ GEOFFREY -->
 
 <button id="hide">Hide</button>
 <button id="show">Show</button>
 
+<!-- should be hidden with the hidden-md-down class
+see  https://v4-alpha.getbootstrap.com/layout/responsive-utilities/ -->
+
     <div class= "modal__dialog ui-widget-content" id="draggable">
-        <div class="modal__content chat" >
+        <div class="modal__content chat visible-lg visible-md" >
             <div class="modal__main" >
                 <div class="chatbox" >
                     <div class="chatbox__row">
@@ -195,9 +199,10 @@ $(document).ready(function(){
                         <div class="head">
 
                             <div class="enter__textarea">
-                                <form role="form" method="POST" action="BlackManba.php?action=chat" >
-                                    <textarea name="send_chat" class="form-control" cols="30" rows="2" placeholder="Say message..."></textarea>
-                                    <input class="button" type="submit">
+                                <!--<form role="form" method="POST" action="BlackManba.php?action=chat" > -->
+                                <form id ="chat">
+                                    <input type="textarea" id="send_chat" class="form-control" cols="30" rows="2" placeholder="Say message..."></input>
+                                <button class="button" type="submit" id="send_message">Send</button>
                                 </form>
 
                             </div>
@@ -211,18 +216,18 @@ $(document).ready(function(){
                         <div class="message">
 
                                 <div class="message__head">
-                                    <span class="message__note"><?= $chat->emetteur->nom; ?></span>
+                                    <span class="message__note"><?= htmlspecialchars($chat->emetteur->nom); ?></span>
                                     <span class="message__note"><?= $chat->post->getDate(); ?></span>
                                 </div>
 
                                 <div class="message__base">
 
                                     <div class="message__avatar avatar">
-                                            <img src="<?php echo (!empty($chat->emetteur->avatar)?$chat->emetteur->avatar:'images/no-avatar.png') ?>"  width="35" height="35" alt="avatar image">
+                                            <img src="<?php echo htmlspecialchars(!empty($chat->emetteur->avatar)?$chat->emetteur->avatar:'images/no-avatar.png') ?>"  width="35" height="35" alt="avatar image">
                                     </div>
 
                                     <div class="message__textbox">
-                                        <span class="message__text"><?= $chat->post->texte; ?></span>
+                                        <span class="message__text"><?= htmlspecialchars($chat->post->texte); ?></span>
                                     </div>
 
                                 </div>
@@ -234,3 +239,44 @@ $(document).ready(function(){
             </div>
         </div>
     </div>
+
+<script>
+ /*   // Envoie un nouveau chat en ajax
+    $( "#chat" ).submit(function( event ) {
+
+        // Stop form from submitting normally
+        event.preventDefault();
+
+        // Get some values from elements on the page:
+        var $form = $( this ),
+            term = $form.find( "input[name='send_chat']" ).val(),
+            url = $form.attr( "action" );
+
+        // Send the data using post
+        $.post( "../ProjetWeb/BlackManbaAjax.php?action=chat", { send_chat: term } );
+        $.('.messaeg__text').append(term);
+
+    });
+*/
+/*MARCHE MAIS RETOURNE SUR LA PAGE LOGIN A CHAQUE FOIS !!!*/
+    $(function() {
+        $('#send_message').click(function() {
+
+            var message = $('#send_chat').val();
+
+            $.ajax({
+                type: "POST",
+                url: "../ProjetWeb/BlackManbaAjax.php?action=chat",
+                data:{ 'send_chat' : message }
+
+            });
+
+            .done(
+            function(data){
+                console.log(data);
+                $(".message__text".html()+data);
+            });
+        });
+    });
+
+</script>

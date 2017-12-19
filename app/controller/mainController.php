@@ -27,6 +27,7 @@ class mainController
             }
             else
             {
+                //attribus de session
 
                 context::setSessionAttribute('id', $context->res->id);
                 context::setSessionAttribute('identifiant', $context->res->identifiant);
@@ -64,43 +65,51 @@ class mainController
 
     //Martinez Geoffrey
     //16-10-17
+    //affiche les messages recus et envoyés pour un utilisateur
+    //input : get[id]
+    //output : $context->message, destinataire, res
+    //
     //Update Dimitri Hueber
     public static function showmessage($request, $context){
+
         if($_SESSION['prenom']==null || $_SESSION['nom']==null){
             return $context->redirect("BlackManba.php?action=login");
         }
 
-            if (isset($_GET['id'])) {
-                self::userlistwall($request,$context);
-                self::chat($request,$context);
-                $context->message = messageTable::getMessageByUserId($_GET['id']); //recup messages user
-                $context->messageDestinataire = messageTable::getMessageByUserIdDestinataire($_GET['id']);
-                $context->res = utilisateurTable::getUserById($_GET['id']); //recup info user
-            }
+        if (isset($_GET['id'])) {
+            self::userlistwall($request,$context);
+            self::chat($request,$context);
+            $context->message = messageTable::getMessageByUserId($_GET['id']); //recup messages user
+            $context->messageDestinataire = messageTable::getMessageByUserIdDestinataire($_GET['id']);
+            $context->res = utilisateurTable::getUserById($_GET['id']); //recup info user
+        }
 
-            else{
-                self::userlistwall($request,$context);
-                self::chat($request,$context);
-            $context->message = messageTable::getMessageByUserId($_SESSION['id']);
-            $context->messageDestinataire = messageTable::getMessageByUserIdDestinataire($_SESSION['id']);
-            $context->res = utilisateurTable::getUserById($_SESSION['id']); //recup info user
-            }
+        else{
+            self::userlistwall($request,$context);
+            self::chat($request,$context);
+        $context->message = messageTable::getMessageByUserId($_SESSION['id']);
+        $context->messageDestinataire = messageTable::getMessageByUserIdDestinataire($_SESSION['id']);
+        $context->res = utilisateurTable::getUserById($_SESSION['id']); //recup info user
+        }
 
         if(!empty($_POST['send_message'])){
             messageTable::SendMessage($_GET['id'],$_SESSION['id'],$_POST['send_message']); // to , by , text
         }
 
 
+        $context->navbar_etat = "showmessage";
         return context::SUCCESS;
     }
 
 
     //Martinez Geoffrey
     //20-10-17
+    // permet de récuperer la lite des utilisateurs
+
     public static function userslist($request,$context){
         self::logornot($request,$context);
         $context->users=utilisateurTable::getUsers();
-
+        $context->navbar_etat = "userslist";
         return context::SUCCESS;
     }
     //Dimitri Hueber
@@ -112,19 +121,26 @@ class mainController
 
     //Martinez Geoffrey
     //20-10-17
+    //permet de récupérer les 10 derniers messages
+
     public static function allmessage($request,$context){
         self::logornot($request,$context);
+
         $context->allmessage = messageTable::getAllMessages();
+        $context->navbar_etat = "allmessage";
         return context::SUCCESS;
     }
+    //Martinez Geoffrey
+    //Envoie du message sur le chat
 
     public static function chat($request,$context){
         self::logornot($request,$context);
         $context->chat = chatTable::getChats();
 
         if(!empty($_POST['send_chat'])){
-            chatTable::SendChat($_SESSION['id'],$_POST['send_chat']); // to , by , text
-            header("Refresh:0");
+            chatTable::SendChat($_SESSION['id'],$_POST['send_chat']); // to , by
+
+            //header("Refresh:0");
         }
 
         return context::SUCCESS;
@@ -138,6 +154,7 @@ class mainController
             $context->profil->statut=strip_tags($request['modif_statut']);
             utilisateurTable::updateStatut($context->profil);
         }
+        $context->navbar_etat = "profil";
         return context::SUCCESS;
     }
 
