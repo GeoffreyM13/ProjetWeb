@@ -45,11 +45,11 @@ else $messageDestinataire = "Personne n'a écrit à cet user !";
             </form>
             <br>
             <div class="col-lg-offset-3">
-                <button onclick="showPane('messageenvoyer')">Message Envoyés</button><button onclick="showPane('messagerecu')">Message Reçus</button>
+                <button class="btn btn-info" onclick="showPane('messageenvoyer')">Message Envoyés</button>   <button class="btn btn-info" onclick="showPane('messagerecu')">Message Reçus</button>
             </div>
             <div id="message">
                 <div id="messageenvoyer" style="background-color: #f8f8f8">
-                    <h4>Message Envoyés</h4>
+                    <h3 ><u>Message Envoyés</u></h3>
                     <?php 
                     if($context->message != false) {
                         foreach ( $context->message as $message)
@@ -85,7 +85,7 @@ else $messageDestinataire = "Personne n'a écrit à cet user !";
                 </div>
                 <!--Fait par Dimitri Hueber, Récupère les messages envoyé à cette utilisateur-->
                 <div id="messagerecu" style="background-color: #f8f8f8;display: none">
-                    <h4>Message Reçus</h4>
+                    <h3><u>Message Reçus</u></h3>
 
                     <?php 
                     if($context->messageDestinataire != false) {
