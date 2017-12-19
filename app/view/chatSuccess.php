@@ -47,13 +47,14 @@
 
     .modal__main {
         flex: 1 1 auto;
-        width: 400px;
+        width: 100%;
     }
 
     .chat {
         display: flex;
         background-color: white;
         box-shadow: 0 0 32px rgba(0, 1, 3, 0.15);
+        margin-bottom: 0px;
     }
 
 
@@ -76,7 +77,7 @@
         display: flex;
         flex-direction: column;
         justify-content: space-between;
-        height: 530px;
+        height: auto;
         table-layout: fixed;
         box-sizing: border-box;
         width: 100%;
@@ -168,33 +169,38 @@
 <script>
 
 $( function() {
-$( "#draggable" ).draggable().resizable({minHeight: 150,
+$( "#draggable" ).draggable().resizable({minHeight: 250,
     minWidth: 357});
 });
 
 $(document).ready(function(){
     $("#hide").click(function(){
-        $("#draggable").hide();
+        $("#showornot").hide();
     });
     $("#show").click(function(){
-        $("#draggable").show();
+        $("#showornot").show();
     });
 });
 </script>
 
 <!-- MARTINEZ GEOFFREY -->
 
-<button id="hide">Hide</button>
-<button id="show">Show</button>
+
 
 <!-- should be hidden with the hidden-md-down class
 see  https://v4-alpha.getbootstrap.com/layout/responsive-utilities/ -->
 
-    <div class= "modal__dialog ui-widget-content" id="draggable">
+    <div class= "modal__dialog ui-widget-content"  id="draggable" >
         <div class="modal__content chat visible-lg visible-md" >
             <div class="modal__main" >
-                <div class="chatbox" >
-                    <div class="chatbox__row">
+                <!-- MARTINEZ GEOFFREY -->
+                <!-- affiche ou non le chat -->
+                <button id="hide" class="glyphicon glyphicon-menu-up"></button>
+                <button id="show" class="glyphicon glyphicon-menu-down"></button>
+
+                <div class="chatbox" id="showornot" >
+                    <div class="chatbox__row" >
+
 
                         <div class="head">
 
@@ -210,7 +216,7 @@ see  https://v4-alpha.getbootstrap.com/layout/responsive-utilities/ -->
 
                         </div>
                     </div>
-                    <div class="chatbox__row chatbox__row_fullheight " >
+                    <div class="chatbox__row chatbox__row_fullheight "  >
 
                     <?php foreach($context->chat as $chat): ?>
                         <div class="message">
