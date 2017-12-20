@@ -45,7 +45,7 @@ else $messageDestinataire = "Personne n'a écrit à cet user !";
             </form>
             <br>
             <div class="col-lg-offset-3">
-                <button class="btn btn-info" onclick="showPane('messageenvoyer')">Message Envoyés</button>   <button class="btn btn-info" onclick="showPane('messagerecu')">Message Reçus</button>
+                <button class="btn btn-info" onclick="showPane('messageenvoyer')">Message Envoyés</button>   <button class="btn btn-info" onclick="showPane('messagere')">Message Reçus</button>
             </div>
             <div id="message">
                 <div id="messageenvoyer" style="background-color: #f8f8f8">
@@ -54,26 +54,28 @@ else $messageDestinataire = "Personne n'a écrit à cet user !";
                     if($context->message != false) {
                         foreach ( $context->message as $message)
                         {
-                            echo "<hr>";
-                            echo "<h2>"; 
-                            echo htmlentities($message->post->texte);
-                            echo "</h2>";
-                            echo "<h5><span class='glyphicon glyphicon-user'></span> Post by ";
-                            echo $message->emetteur->nom;
-                            echo " for ";
-                            echo $message->destinataire->nom;
-                            echo "</h5>";
-                            echo "<h5><span class='glyphicon glyphicon-time'></span>";
-                            echo $message->post->getDate();
-                            echo "</h5>";
-                            echo "<h5><span class='glyphicon glyphicon-thumbs-up'>";
-                            if(!isset($message->aimer)){
-                                echo "0";
-                            } 
-                            else {
-                                echo $message->aimer;
-                            } 
-                            echo "</span> <span class='label label-primary'>Add Pouce Bleue !</span></h5><br>";
+                            if (!empty($message->destinataire->nom)) {
+                                echo "<hr>";
+                                echo "<h2>"; 
+                                echo htmlentities($message->post->texte);
+                                echo "</h2>";
+                                echo "<h5><span class='glyphicon glyphicon-user'></span> Post by ";
+                                echo $message->emetteur->nom;
+                                echo " for ";
+                                echo $message->destinataire->nom;
+                                echo "</h5>";
+                                echo "<h5><span class='glyphicon glyphicon-time'></span>";
+                                echo $message->post->getDate();
+                                echo "</h5>";
+                                echo "<h5><span class='glyphicon glyphicon-thumbs-up'>";
+                                if(!isset($message->aimer)){
+                                    echo "0";
+                                } 
+                                else {
+                                    echo $message->aimer;
+                                } 
+                                echo "</span> <span class='label label-primary'>Add Pouce Bleue !</span></h5><br>";  
+                            }  
                         }
                     }
                     else {
@@ -84,7 +86,8 @@ else $messageDestinataire = "Personne n'a écrit à cet user !";
                     } ?>
                 </div>
                 <!--Fait par Dimitri Hueber, Récupère les messages envoyé à cette utilisateur-->
-                <div id="messagerecu" style="background-color: #f8f8f8;display: none">
+                <div id="messagere" style="background-color: #f8f8f8;display: none">
+                    <div id="messagerecu">
                     <h3><u>Message Reçus</u></h3>
 
                     <?php 
@@ -120,6 +123,7 @@ else $messageDestinataire = "Personne n'a écrit à cet user !";
                         echo "</h2>";
                     } ?>
                 </div>
+                </div>
             </div>
     </div>
     <!--Fait par Dimitri Hueber-->
@@ -139,33 +143,38 @@ else $messageDestinataire = "Personne n'a écrit à cet user !";
                     }
             }
         }
+    //Fait par Dimitri Hueber    
+        $(function() {
+            $('#message_textarea').submit(function( event ) {
+                // Stop form from submitting normally
+                event.preventDefault();
 
-    $(function() {
-        $('#message_textarea').submit(function( event ) {
-            // Stop form from submitting normally
-            event.preventDefault();
+                // Get some values from elements on the page:
+                var $formVal = $(this).find( "textarea[name='send_message']" )
+                var term = $formVal.val();
 
-            // Get some values from elements on the page:
-            var $formVal = $(this).find( "textarea[name='send_message']" )
-            var term = $formVal.val();
+                if (term == '') {
+                    return;
+                }
 
-            if (term == '') {
-                return;
-            }
+                // Send the data using post
+                $.post('BlackManbaAjax.php?action=showmessage&id=<?php echo $context->res->id ?>', { send_message: term } )
+                .done(function (data) {
+                    data = JSON.parse(data);
 
-            // Send the data using post
-            $.post('BlackManbaAjax.php?action=showmessage&id=<?php echo $context->res->id ?>', { send_message: term } )
-            .done(function (data) {
-                data = JSON.parse(data);
+                    $formVal.val('');
+                    $('#messageenvoyer').load('./BlackManbaAjax.php?action=showmessage&id=<?php echo $context->res->id ?> #messageenvoyer')
+                    $('#messagerecu').load('./BlackManbaAjax.php?action=showmessage&id=<?php echo $context->res->id ?> #messagerecu')
+                })
 
-                $formVal.val('');
-                $('#message').load('./BlackManbaAjax.php?action=showmessage&id=<?php echo $context->res->id ?> #message')
-            })
+                return false;
+            });
 
-            return false;
+            setInterval(function () {
+                $('#messagerecu').load('./BlackManbaAjax.php?action=showmessage&id=<?php echo $context->res->id ?> #messagerecu')
+            }, 30000);
+
         });
-
-    });
 
     </script>
 
