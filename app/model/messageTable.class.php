@@ -89,6 +89,27 @@ class messageTable {
 
     }
 
+
+    //Martinez Geoffrey
+    // permet de retourner les aimes pour un message
+    public static function UpdateAime($message_id){
+
+        $em = dbconnection::getInstance()->getEntityManager();
+
+        $messageRepository = $em->getRepository('message');
+        $message = $messageRepository->findOneBy(array("id"=> $message_id));
+
+        if ($message == false) {
+            return false;
+        }
+
+        $message = add();
+        $em->merge($message);
+        $em->flush();
+
+        return $message->aime;
+    }
+
 }
 
 ?>

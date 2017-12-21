@@ -49,7 +49,7 @@ else $messageDestinataire = "Personne n'a écrit à cet user !";
             </div>
             <div id="message">
                 <div id="messageenvoyer" style="background-color: #f8f8f8">
-                    <h3 ><u>Message Envoyés</u></h3>
+                    <h3><u>Message Envoyés</u></h3>
                     <?php 
                     if($context->message != false) {
                         foreach ( $context->message as $message)
@@ -67,13 +67,18 @@ else $messageDestinataire = "Personne n'a écrit à cet user !";
                             echo $message->post->getDate();
                             echo "</h5>";
                             echo "<h5><span class='glyphicon glyphicon-thumbs-up'>";
-                            if(!isset($message->aimer)){
+                            if(!isset($message->aime)){
                                 echo "0";
                             } 
                             else {
-                                echo $message->aimer;
-                            } 
-                            echo "</span> <span class='label label-primary'>Add Pouce Bleue !</span></h5><br>";
+                                echo $message->aime;
+                            }
+                            ?>
+                            <form method='POST' id='add_aime' action="BlackManba.php?action=showmessage&id=<?php echo $context->res->id  ?>">
+                            <input id ="value_id"value="<?= $message->id ; ?>" />
+                            <button type='submit' class='btn-warning'> ADD!</button><br>
+                            </form>
+                    <?php
                         }
                     }
                     else {
@@ -103,14 +108,14 @@ else $messageDestinataire = "Personne n'a écrit à cet user !";
                             echo "<h5><span class='glyphicon glyphicon-time'></span>";
                             echo $messageDestinataire->post->getDate();
                             echo "</h5>";
-                            echo "<h5><span class='glyphicon glyphicon-thumbs-up'>";
-                            if(!isset($messageDestinataire->aimer)){
+                            echo "<h5><span class='glyphicon glyphicon-thumbs-up'> ";
+                            if(!isset($messageDestinataire->aime)){
                                 echo "0";
                             } 
                             else {
-                                echo $messageDestinataire->aimer;
+                                echo $messageDestinataire->aime;
                             } 
-                            echo "</span> <span class='label label-primary'>Add Pouce Bleue !</span></h5><br>";
+                            echo "  <input type='button' id='add_aime' class='glyphicon-bitcoin' value='<?= $messageDestinataire->id ?>' >Add!</input><br>";
                         }
                     }
                     else {
@@ -166,6 +171,22 @@ else $messageDestinataire = "Personne n'a écrit à cet user !";
         });
 
     });
+
+        // MARTINEZ GEOFFREY - Ajout aime et refresh
+        $(function() {
+            $('#add_aime').submit(function( event ) {
+                // Stop form from submitting normally
+                event.preventDefault();
+
+                var data = document.getElementById("value_id").value;
+
+                // Send the data using post
+                $.post('BlackManbaAjax.php?action=showmessage&id=<?php echo $context->res->id ?>', { add_aime : data } )
+
+                return false;
+            });
+
+        });
 
     </script>
 

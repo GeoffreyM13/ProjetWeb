@@ -74,6 +74,7 @@ class mainController
             $context->message = messageTable::getMessageByUserId($_GET['id']); //recup messages user
             $context->messageDestinataire = messageTable::getMessageByUserIdDestinataire($_GET['id']);
             $context->res = utilisateurTable::getUserById($_GET['id']); //recup info user
+
         } else {
             self::userlistwall($request, $context);
             self::chat($request, $context);
@@ -84,6 +85,19 @@ class mainController
 
         if (!empty($_POST['send_message'])) {
             messageTable::SendMessage($_GET['id'], $_SESSION['id'], $_POST['send_message']); // to , by , text
+            if ($context->type === 'ajax') {
+                die(json_encode($sent));
+            }
+
+            return $context->redirect('BlackManba.php?action='.$request['action']);
+        }
+
+        if (!empty($_POST['add_aime'])) {
+
+            var_dump($_POST['add_aime']);
+            die;
+            messageTable::UpdateAime($_POST['add_aime']); // message id
+
             if ($context->type === 'ajax') {
                 die(json_encode($sent));
             }

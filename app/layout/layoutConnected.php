@@ -86,7 +86,7 @@
             <ul class="nav navbar-nav navbar-right">
 
                 <li> <a class="navbar-brand" href="#"> Welcome Back, <?php echo $_SESSION['identifiant'];?> ! </a></li>
-                <li><button id="Submit" style="background-color:gainsboro"><span class="glyphicon glyphicon-log-out" ></span> Logout</button></li>
+                <li><a href='../ProjetWeb/BlackManbaAjax.php?action=disconnected'><button id="Submit" style="background-color:gainsboro"> <span class="glyphicon glyphicon-log-out" ></span> Logout</button></a></li>
             </ul>
         </div>
     </div>
@@ -100,6 +100,9 @@
 
 </body>
 </html>
+
+<!-- Le logout a était fait en ajax mais n'est pas la meilleur option -->
+<!-- Un redirect simple a était préferer
 <script>
 
     $(function() {
@@ -110,11 +113,14 @@
                 url: '../ProjetWeb/BlackManbaAjax.php?action=disconnected',
                 success: function(data) {
                     $('#layout').empty().prepend("Vous êtes bien deconnecté!");
+                    window.location = '../ProjetWeb/BlackManbaAjax.php?action=login';
                 },
                 error: function() {
                     alert('La requête n\'a pas abouti'); }
             });
         });
+
     });
 
 </script>
+-->

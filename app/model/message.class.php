@@ -54,6 +54,11 @@ class message{
         $this->aime = 0;
     }
 
+    public function add()
+    {
+        $this->aime = $this->aime + 1;
+    }
+
 }
 
 ?>

@@ -245,7 +245,7 @@ see  https://v4-alpha.getbootstrap.com/layout/responsive-utilities/ -->
             </div>
         </div>
     </div>
-<!--Fait par Dimitri HUEBER -->
+<!--Fait par Dimitri HUEBER  & Geoffrey-->
 <script>
     $(function() {
         $('#chat').submit(function( event ) {
@@ -271,7 +271,7 @@ see  https://v4-alpha.getbootstrap.com/layout/responsive-utilities/ -->
 
             return false;
         });
-
+        // recharge le chat tous les 5s
         setInterval(function () {
             $('#chatbox_messages').load('./BlackManbaAjax.php?action=chat #chatbox_messages')
         }, 5000);
