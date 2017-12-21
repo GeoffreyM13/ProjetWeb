@@ -207,7 +207,7 @@ see  https://v4-alpha.getbootstrap.com/layout/responsive-utilities/ -->
                             <div class="enter__textarea">
                                 <form role="form" id="chat" method="POST" action="BlackManba.php" >
                                 <input type="textarea" id="send_chat" class="form-control" cols="30" rows="2" placeholder="Say message..." name="send_chat"></input>
-                                <button class="button" type="submit" id="send_message">Send</button>
+                                    <button class="button" type="submit" id="send_message">Send</button>
                                 <input type="hidden" name="action" value="<?php echo $action ?>">
                                 </form>
 
@@ -267,6 +267,7 @@ see  https://v4-alpha.getbootstrap.com/layout/responsive-utilities/ -->
 
                 $formVal.val('');
                 $('#chatbox_messages').load('./BlackManbaAjax.php?action=chat #chatbox_messages')
+                $.notify("Hello World");
             })
 
             return false;
@@ -275,6 +276,30 @@ see  https://v4-alpha.getbootstrap.com/layout/responsive-utilities/ -->
         setInterval(function () {
             $('#chatbox_messages').load('./BlackManbaAjax.php?action=chat #chatbox_messages')
         }, 5000);
+
+    });
+
+    $(function(){
+        $("#send_message").on("click",function(){
+            $.notify({
+                title: '<strong>好標題</strong>',
+                icon: 'glyphicon glyphicon-star',
+                message: "飛進來了!"
+            },{
+                type: 'info',
+                animate: {
+                    enter: 'animated fadeInUp',
+                    exit: 'animated fadeOutRight'
+                },
+                placement: {
+                    from: "top",
+                    align: "left"
+                },
+                offset: 20,
+                spacing: 10,
+                z_index: 1031,
+            });
+        });
     });
 
 </script>

@@ -94,8 +94,10 @@ class mainController
 
         if (!empty($_POST['add_aime'])) {
 
+
             var_dump($_POST['add_aime']);
             die;
+
             messageTable::UpdateAime($_POST['add_aime']); // message id
 
             if ($context->type === 'ajax') {
