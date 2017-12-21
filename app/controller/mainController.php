@@ -84,7 +84,7 @@ class mainController
         }
 
         if (!empty($_POST['send_message'])) {
-            messageTable::SendMessage($_GET['id'], $_SESSION['id'], $_POST['send_message']); // to , by , text
+            $sent=messageTable::SendMessage($_GET['id'], $_SESSION['id'], $_POST['send_message']); // to , by , text
             if ($context->type === 'ajax') {
                 die(json_encode($sent));
             }
