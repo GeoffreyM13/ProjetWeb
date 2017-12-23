@@ -17,6 +17,14 @@
     margin-bottom: 30px;
 }
 
+.update_profil_avatar{
+  text-align: center;
+}
+
+.avatar{
+  display: inline-block !important;
+}
+
 .form-control {
     position: relative;
     font-size: 16px;

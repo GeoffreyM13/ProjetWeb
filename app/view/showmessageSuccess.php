@@ -194,7 +194,7 @@ else $messageDestinataire = "Personne n'a écrit à cet user !";
 
         // MARTINEZ GEOFFREY - Ajout aime et refresh
         $(function() {
-            $('.value_id').submit(function( event ) {
+            $('#add_aime').submit(function( event ) {
                 // Stop form from submitting normally
                 event.preventDefault();
 
@@ -206,7 +206,7 @@ else $messageDestinataire = "Personne n'a écrit à cet user !";
                 }
 
                 // Send the data using post
-                $.post('BlackManbaAjax.php?action=showmessage&id=<?php echo $context->res->id ?>&message=<?php echo $context->message->id ?>', { value_id : term } )
+                $.post('BlackManbaAjax.php?action=showmessage&id=<?php echo $context->res->id ?>', { send_message: term } )
                 .done(function (data) {
                     data = JSON.parse(data);
 
