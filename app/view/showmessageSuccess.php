@@ -45,13 +45,13 @@ else $messageDestinataire = "Personne n'a écrit à cet user !";
             </form>
             <br>
             <div class="col-lg-offset-3">
-                <button class="btn btn-info" onclick="showPane('messageenvoyer')">Message Envoyés</button>   <button class="btn btn-info" onclick="showPane('messagere')">Message Reçus</button>
+                <button class=" btn btn-info" onclick="showPane('messageenvoyer')">Message Envoyés</button>   <button class="btn btn-info" onclick="showPane('messagere')">Message Reçus</button>
             </div>
             <div id="message">
                 <div id="messageenvoyer" style="background-color: #f8f8f8">
                     <h3><u>Message Envoyés</u></h3>
 
-
+                <!-- Martinez Geoffrey -  Affiche les messages envoyés par un utilisateur -->
                     <?php 
                     if($context->message != false) {
                       ?>
@@ -178,6 +178,7 @@ else $messageDestinataire = "Personne n'a écrit à cet user !";
                     $formVal.val('');
                     $('#messageenvoyer').load('./BlackManbaAjax.php?action=showmessage&id=<?php echo $context->res->id ?> #messageenvoyer')
                     $('#messagerecu').load('./BlackManbaAjax.php?action=showmessage&id=<?php echo $context->res->id ?> #messagerecu')
+                    Notification('send');
                 })
 
                 return false;
@@ -204,5 +205,6 @@ else $messageDestinataire = "Personne n'a écrit à cet user !";
             });
 
         });
+
 
     </script>

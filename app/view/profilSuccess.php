@@ -2,7 +2,12 @@
     Fait par Dimitri
 -->
 
+<!--martinez geoffrey - inclusion du chat-->
+<div class="col-sm-3 sidenav">
 
+    <?php include("chatSuccess.php"); ?>
+
+</div>
         <div class="container">
             <div class="row profile">
                 <div class="col-lg-offset">
@@ -54,9 +59,12 @@
             .done(function (data) {
                 $('#profile-statut').text(data);
                 $formVal.val('');
+                Notification('statut');
             })
 
             return false;
         });
     });
+
+
 </script>

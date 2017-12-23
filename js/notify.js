@@ -1,22 +1,21 @@
-$(function(){
-    $("#notify").on("click",function(){
-        $.notify({
-            title: '<strong>好標題</strong>',
-            icon: 'glyphicon glyphicon-star',
-            message: "飛進來了!"
-        },{
-            type: 'info',
-            animate: {
-                enter: 'animated fadeInUp',
-                exit: 'animated fadeOutRight'
-            },
-            placement: {
-                from: "top",
-                align: "left"
-            },
-            offset: 20,
-            spacing: 10,
-            z_index: 1031,
+
+<!-- MARTINEZ GEOFFREY -->
+<!-- notif pour le chat -->
+function Notification(action) {
+
+    if (action == 'chat') {
+
+        $.bootstrapGrowl('Votre chat a bien été envoyé !', {
+
+            ele: '.chatbox',
+            type: 'success',
+            offset: {from: 'top', amount: 20},
+            delay: 3000,
+            width: 250,
+            allow_dismiss: true,
+            align: 'right'
+
+
         });
-    });
-});
+    }
+}

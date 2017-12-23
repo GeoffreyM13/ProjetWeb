@@ -8,9 +8,19 @@
 
 ?>
 
+
+
 <div class="col-lg-offset-4">
 <h4>WHAT'S NEWS ? [...]</h4><br><br>
+
 </div>
+<!--martinez geoffrey - inclusion du chat-->
+<div class="col-sm-3 col-lg-offset-8">
+
+    <?php include("chatSuccess.php"); ?>
+
+</div>
+
 <?php foreach($context->allmessage as $message): ?>
 
 <div class="container-fluid">
@@ -42,6 +52,4 @@
     </div>
 </div>
 <?php endforeach; ?>
-
-
 

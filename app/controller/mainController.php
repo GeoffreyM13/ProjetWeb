@@ -60,7 +60,8 @@ class mainController
     //affiche les messages recus et envoyés pour un utilisateur
     //input : get[id]
     //output : $context->message, destinataire, res
-    //
+    //Page principal qui inclus ensuite les pages annexes
+
     //Update Dimitri Hueber
     public static function showmessage($request, $context)
     {
@@ -93,7 +94,6 @@ class mainController
         }
 
         if (!empty($_POST['add_aime'])) {
-
 
             var_dump($_POST['add_aime']);
             die;
@@ -141,6 +141,7 @@ class mainController
     public static function allmessage($request, $context)
     {
         self::logornot($request, $context);
+        self::chat($request, $context);
         $context->allmessage = messageTable::getAllMessages();
         $context->navbar_etat = "allmessage";
 
@@ -148,7 +149,7 @@ class mainController
     }
     //Martinez Geoffrey
     //Envoie du message sur le chat
-
+    //recupération des 10 derniers chat
     public static function chat($request, $context)
     {
         self::logornot($request, $context);
@@ -171,6 +172,7 @@ class mainController
     public static function profil($request, $context)
     {
         self::logornot($request, $context);
+        self::chat($request, $context);
         $context->profil = utilisateurTable::getUserById($_SESSION['id']);
         if (!empty($request['modif_statut'])) {
             $context->profil->statut = strip_tags($request['modif_statut']);

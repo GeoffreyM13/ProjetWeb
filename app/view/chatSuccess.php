@@ -7,6 +7,7 @@
  */
 
 ?>
+
 <style>
 
      .button:hover,
@@ -184,7 +185,10 @@ $(document).ready(function(){
 </script>
 
 <!-- MARTINEZ GEOFFREY -->
-
+<!-- Geoffrey Martinez -->
+<!-- Pour les notify de bootstrap -->
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-growl/1.0.0/jquery.bootstrap-growl.min.js"></script>
+<script type="text/javascript" src="js/notify.js"></script>
 
 
 <!-- should be hidden with the hidden-md-down class
@@ -267,7 +271,7 @@ see  https://v4-alpha.getbootstrap.com/layout/responsive-utilities/ -->
 
                 $formVal.val('');
                 $('#chatbox_messages').load('./BlackManbaAjax.php?action=chat #chatbox_messages')
-                $.notify("Hello World");
+                Notification('chat');
             })
 
             return false;
@@ -277,29 +281,78 @@ see  https://v4-alpha.getbootstrap.com/layout/responsive-utilities/ -->
             $('#chatbox_messages').load('./BlackManbaAjax.php?action=chat #chatbox_messages')
         }, 5000);
 
+        setInterval(function(){Notification('chat_updated')},15000);
+
     });
 
-    $(function(){
-        $("#send_message").on("click",function(){
-            $.notify({
-                title: '<strong>好標題</strong>',
-                icon: 'glyphicon glyphicon-star',
-                message: "飛進來了!"
-            },{
-                type: 'info',
-                animate: {
-                    enter: 'animated fadeInUp',
-                    exit: 'animated fadeOutRight'
-                },
-                placement: {
-                    from: "top",
-                    align: "left"
-                },
-                offset: 20,
-                spacing: 10,
-                z_index: 1031,
+
+    <!-- MARTINEZ GEOFFREY -->
+    <!-- notifications pour le site -->
+   <!-- pour l'ensenble des pages car chat est inclus dans presque toutes les pages -->
+    function Notification(action) {
+
+        if (action == 'chat') {
+
+            $.bootstrapGrowl('Votre chat a bien été envoyé !', {
+
+                ele: '.chatbox',
+                type: 'success',
+                offset: {from: 'top', amount: 20},
+                delay: 3000,
+                width: 250,
+                allow_dismiss: true,
+                align: 'right'
+
+
             });
-        });
-    });
+        }
+        if (action == 'chat_updated') {
+
+            $.bootstrapGrowl('Votre chat a été mise à jour!', {
+
+                ele: '.modal__main',
+                type: 'success',
+                offset: {from: 'top', amount: 20},
+                delay: 1000,
+                width: 250,
+                allow_dismiss: true,
+                align: 'right'
+
+
+            });
+
+        }
+        if (action == 'send') {
+
+            $.bootstrapGrowl('Votre message à bien été envoyé!', {
+
+                ele: 'body',
+                type: 'success',
+                offset: {from: 'top', amount: 20},
+                delay: 3000,
+                width: 250,
+                allow_dismiss: true,
+                align: 'right'
+
+
+            });
+        }
+        if (action == 'statut') {
+
+            $.bootstrapGrowl('Votre statu a bien été modifié!', {
+
+                ele: 'body',
+                type: 'success',
+                offset: {from: 'top', amount: 20},
+                delay: 3000,
+                width: 250,
+                allow_dismiss: true,
+                align: 'right'
+
+
+            });
+        }
+    }
+
 
 </script>
