@@ -94,6 +94,7 @@ class mainController
 
         if (isset($_GET['message'])) {
 
+
             var_dump($_GET['message']);
             die;
             messageTable::UpdateAime($_GET['message']); // message id

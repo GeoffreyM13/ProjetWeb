@@ -44,14 +44,20 @@ else $messageDestinataire = "Personne n'a écrit à cet user !";
                 <button type="submit" class="btn btn-success">SEND</button>
             </form>
             <br>
+            <!-- Affichage messagerecu-messageenvoyer Dimitri hueber -->
             <div class="col-lg-offset-3">
                 <button class="btn btn-info" onclick="showPane('messageenvoyer')">Message Envoyés</button>   <button class="btn btn-info" onclick="showPane('messagere')">Message Reçus</button>
             </div>
             <div id="message">
                 <div id="messageenvoyer" style="background-color: #f8f8f8">
                     <h3><u>Message Envoyés</u></h3>
+
+
                     <?php 
                     if($context->message != false) {
+                      ?>
+                    <form method='POST'  action="BlackManba.php?action=showmessage&id=<?php echo $context->res->id  ?>">
+                        <?php
                         foreach ( $context->message as $message)
                         {
 
@@ -68,7 +74,8 @@ else $messageDestinataire = "Personne n'a écrit à cet user !";
                                 echo "<h5><span class='glyphicon glyphicon-time'></span>";
                                 echo $message->post->getDate();
                                 echo "</h5>";
-                                echo "<h5><span class='glyphicon glyphicon-thumbs-up'></h5>";
+
+                                echo "<h5><span class='glyphicon glyphicon-thumbs-up'></span></h5>";
                                 if(!isset($message->aimer)){
                                     echo "0";
                                 } 
@@ -76,15 +83,15 @@ else $messageDestinataire = "Personne n'a écrit à cet user !";
                                     echo $message->aimer;
                                 } 
                                  ?>
+
                             <form method='POST' id='add_aime' role="form" action="BlackManba.php?action=showmessage&id=<?php echo $context->res->id  ?>&message=<?php echo $message->id  ?>">
-                            <input id ="value_id" name="value_id" value="<?= $message->id ; ?>" />
                             <button type='submit' class='btn-warning'> ADD!</button><br>
-                            </form>
+
                     <?php
 
-                            }  
+                            }
 
-                        }
+                        }     ?>  </form> <?php
                     }
                     else {
                         echo "<hr>";
@@ -114,7 +121,11 @@ else $messageDestinataire = "Personne n'a écrit à cet user !";
                             echo "<h5><span class='glyphicon glyphicon-time'></span>";
                             echo $messageDestinataire->post->getDate();
                             echo "</h5>";
+<<<<<<< HEAD
                             echo "<h5><span class='glyphicon glyphicon-thumbs-up'></h5>";
+=======
+                            echo "<h5><span class='glyphicon glyphicon-thumbs-up'> </span></h5>";
+>>>>>>> 4a59b3ea5d0ab80ad60bd8f69b13174664ecb47a
                             if(!isset($messageDestinataire->aime)){
                                 echo "0";
                             } 
@@ -186,7 +197,7 @@ else $messageDestinataire = "Personne n'a écrit à cet user !";
 
         // MARTINEZ GEOFFREY - Ajout aime et refresh
         $(function() {
-            $('#add_aime').submit(function( event ) {
+            $('.value_id').submit(function( event ) {
                 // Stop form from submitting normally
                 event.preventDefault();
 
