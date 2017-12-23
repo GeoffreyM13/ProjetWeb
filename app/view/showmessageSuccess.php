@@ -44,6 +44,7 @@ else $messageDestinataire = "Personne n'a écrit à cet user !";
                 <button type="submit" class="btn btn-success">SEND</button>
             </form>
             <br>
+            <!-- Affichage messagerecu-messageenvoyer Dimitri hueber -->
             <div class="col-lg-offset-3">
                 <button class=" btn btn-info" onclick="showPane('messageenvoyer')">Message Envoyés</button>   <button class="btn btn-info" onclick="showPane('messagere')">Message Reçus</button>
             </div>
@@ -73,6 +74,7 @@ else $messageDestinataire = "Personne n'a écrit à cet user !";
                                 echo "<h5><span class='glyphicon glyphicon-time'></span>";
                                 echo $message->post->getDate();
                                 echo "</h5>";
+
                                 echo "<h5><span class='glyphicon glyphicon-thumbs-up'></span></h5>";
                                 if(!isset($message->aimer)){
                                     echo "0";
@@ -82,7 +84,7 @@ else $messageDestinataire = "Personne n'a écrit à cet user !";
                                 } 
                                  ?>
 
-                            <input class ="value_id" value="<?= $message->id ; ?>" />
+                            <form method='POST' id='add_aime' role="form" action="BlackManba.php?action=showmessage&id=<?php echo $context->res->id  ?>&message=<?php echo $message->id  ?>">
                             <button type='submit' class='btn-warning'> ADD!</button><br>
 
                     <?php
@@ -119,6 +121,7 @@ else $messageDestinataire = "Personne n'a écrit à cet user !";
                             echo "<h5><span class='glyphicon glyphicon-time'></span>";
                             echo $messageDestinataire->post->getDate();
                             echo "</h5>";
+
                             echo "<h5><span class='glyphicon glyphicon-thumbs-up'> </span></h5>";
                             if(!isset($messageDestinataire->aime)){
                                 echo "0";
@@ -196,10 +199,22 @@ else $messageDestinataire = "Personne n'a écrit à cet user !";
                 // Stop form from submitting normally
                 event.preventDefault();
 
-                var data = document.getElementById("value_id").value;
+                var $formVal = $(this).find( "input[name='value_id']" )
+                var term = $formVal.val();
+
+                if (term == '') {
+                    return;
+                }
 
                 // Send the data using post
-                $.post('BlackManbaAjax.php?action=showmessage&id=<?php echo $context->res->id ?>', { add_aime : data } )
+                $.post('BlackManbaAjax.php?action=showmessage&id=<?php echo $context->res->id ?>&message=<?php echo $context->message->id ?>', { value_id : term } )
+                .done(function (data) {
+                    data = JSON.parse(data);
+
+                    $formVal.val('');
+                    $('#messageenvoyer').load('./BlackManbaAjax.php?action=showmessage&id=<?php echo $context->res->id ?> #messageenvoyer')
+                    $('#messagerecu').load('./BlackManbaAjax.php?action=showmessage&id=<?php echo $context->res->id ?> #messagerecu')
+                })
 
                 return false;
             });

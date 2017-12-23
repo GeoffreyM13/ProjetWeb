@@ -93,12 +93,14 @@ class mainController
             return $context->redirect('BlackManba.php?action='.$request['action']);
         }
 
-        if (!empty($_POST['add_aime'])) {
+        if (isset($_GET['message'])) {
+
 
             var_dump($_POST['add_aime']);
-            die;
+            var_dump($_GET['message']);
 
-            messageTable::UpdateAime($_POST['add_aime']); // message id
+            die;
+            messageTable::UpdateAime($_GET['message']); // message id
 
             if ($context->type === 'ajax') {
                 die(json_encode($sent));
