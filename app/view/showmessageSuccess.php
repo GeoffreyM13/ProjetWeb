@@ -121,11 +121,8 @@ else $messageDestinataire = "Personne n'a écrit à cet user !";
                             echo "<h5><span class='glyphicon glyphicon-time'></span>";
                             echo $messageDestinataire->post->getDate();
                             echo "</h5>";
-<<<<<<< HEAD
-                            echo "<h5><span class='glyphicon glyphicon-thumbs-up'></h5>";
-=======
+
                             echo "<h5><span class='glyphicon glyphicon-thumbs-up'> </span></h5>";
->>>>>>> 4a59b3ea5d0ab80ad60bd8f69b13174664ecb47a
                             if(!isset($messageDestinataire->aime)){
                                 echo "0";
                             } 
