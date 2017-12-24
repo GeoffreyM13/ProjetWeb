@@ -81,7 +81,7 @@
         height: auto;
         table-layout: fixed;
         box-sizing: border-box;
-        width: 100%;
+        width: 80%;
         padding: 0 14px;
 
     }
@@ -185,7 +185,6 @@ $(document).ready(function(){
 </script>
 
 <!-- MARTINEZ GEOFFREY -->
-<!-- Geoffrey Martinez -->
 <!-- Pour les notify de bootstrap -->
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-growl/1.0.0/jquery.bootstrap-growl.min.js"></script>
 <script type="text/javascript" src="js/notify.js"></script>
@@ -210,7 +209,7 @@ see  https://v4-alpha.getbootstrap.com/layout/responsive-utilities/ -->
 
                             <div class="enter__textarea">
                                 <form role="form" id="chat" method="POST" action="BlackManba.php" >
-                                <input type="textarea" id="send_chat" class="form-control" cols="30" rows="2" placeholder="Say message..." name="send_chat"></input>
+                                <input type="textarea" id="send_chat" class="form-control" cols="40" rows="2" placeholder="Say something..." name="send_chat"></input>
                                     <button class="button" type="submit" id="send_message">Send</button>
                                 <input type="hidden" name="action" value="<?php echo $action ?>">
                                 </form>
@@ -288,7 +287,7 @@ see  https://v4-alpha.getbootstrap.com/layout/responsive-utilities/ -->
 
     <!-- MARTINEZ GEOFFREY -->
     <!-- notifications pour le site -->
-   <!-- pour l'ensenble des pages car chat est inclus dans presque toutes les pages -->
+    <!-- utliser pour l'ensenble des pages car chat est inclus dans presque toutes les pages -->
     function Notification(action) {
 
         if (action == 'chat') {
@@ -340,6 +339,36 @@ see  https://v4-alpha.getbootstrap.com/layout/responsive-utilities/ -->
         if (action == 'statut') {
 
             $.bootstrapGrowl('Votre statu a bien été modifié!', {
+
+                ele: 'body',
+                type: 'success',
+                offset: {from: 'top', amount: 20},
+                delay: 3000,
+                width: 250,
+                allow_dismiss: true,
+                align: 'right'
+
+
+            });
+        }
+        if (action == 'like') {
+
+            $.bootstrapGrowl('Vous avez liké, veuillez double cliquer pour ajouter ce like!', {
+
+                ele: 'body',
+                type: 'success',
+                offset: {from: 'top', amount: 20},
+                delay: 3000,
+                width: 250,
+                allow_dismiss: true,
+                align: 'right'
+
+
+            });
+        }
+        if (action == 'avatar') {
+
+            $.bootstrapGrowl('L\'avatar a bien été mis à jour', {
 
                 ele: 'body',
                 type: 'success',

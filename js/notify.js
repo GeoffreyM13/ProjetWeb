@@ -1,6 +1,9 @@
 
 <!-- MARTINEZ GEOFFREY -->
 <!-- notif pour le chat -->
+<!-- FINALEMENT INCLUS DANS LA PAGE CHATSUCCESS CAR NE FONCTIONNE PAS DEPUIS CETTE PAGE MALGRES LINCLUSION -->
+<!-- DANS LE LAYOUT DUN HEADER ... -->
+
 function Notification(action) {
 
     if (action == 'chat') {

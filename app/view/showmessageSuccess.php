@@ -12,6 +12,8 @@ if (!empty($context->messageDestinataire))  foreach ( $context->messageDestinata
 else $messageDestinataire = "Personne n'a écrit à cet user !";
 ?>
 
+<!-- Page principal du site -->
+<!-- elle regroupe la liste d'amis , le chat , les messages recus et envoyés et la possibilité de déposer un message -->
 
 <div class="container-fluid">
         <div class="col-sm-3 sidenav">
@@ -53,63 +55,73 @@ else $messageDestinataire = "Personne n'a écrit à cet user !";
                     <h3><u>Message Envoyés</u></h3>
 
                 <!-- Martinez Geoffrey -  Affiche les messages envoyés par un utilisateur -->
-                    <?php 
-                    if($context->message != false) {
-                      ?>
-                    <form method='POST' id ="formA" class ="add_aime" action="BlackManba.php?action=showmessage&id=<?php echo $context->res->id?>">
-                        <?php
-                        foreach ( $context->message as $message)
-                        {
+                    <?php
+                    if ($context->message == false){
+                        echo "<hr>";
+                        echo "<h2>";
+                        echo $message;
+                        echo "</h2>";
+                    }
+
+                    else if($context->message != false) {
+                        foreach ( $context->message as $message) {
 
                             if (!empty($message->destinataire->nom)) {
                                 echo "<hr>";
-                                echo "<h2>"; 
+                                echo "<h2>";
                                 echo htmlentities($message->post->texte);
                                 echo "</h2>";
                                 echo "<h5><span class='glyphicon glyphicon-user'></span> Post by ";
-                                echo $message->emetteur->nom;
+                                if(isset($message->emetteur->nom)){echo htmlentities($message->emetteur->nom); }else echo "Sans Emetteur";
                                 echo " for ";
-                                echo $message->destinataire->nom;
+                                if(isset($message->destinataire->nom)){echo htmlentities($message->destinataire->nom); }else echo "Sans Destinataire";
                                 echo "</h5>";
                                 echo "<h5><span class='glyphicon glyphicon-time'></span>";
                                 echo $message->post->getDate();
                                 echo "</h5>";
 
-                                echo "<div class=\"btn\" onclick=\"addLike(<?= $message->id ?>)\"> add like  </div>";
-                                if(!isset($message->aimer)){
+
+                                ?>
+
+                                <div>
+                                    <form method="POST" class="update_like" action="BlackManba.php?action=showmessage&id=<?php echo $context->res->id; ?>">
+                                        <input type="hidden" name="modif_like" id="modif_like" value="<?= $message->id ?>">
+                                        <button type="submit"><span class="glyphicon glyphicon-thumbs-up"></span>
+                                        </button>
+                                    </form>
+                                </div>
+                                <?php
+                                if (!isset($message->aime)) {
                                     echo "0";
-                                } 
-                                else {
-                                    echo $message->aimer;
-                                } 
-                                 ?>
-
-                            <input name="messageid" class ="messageid" value="<?= $message->id ?>" type='submit' class='btn-warning'> ADD!</input><br>
-
-                    <?php
+                                }
+                                else
+                                    {
+                                    echo $message->aime;
+                                }
 
                             }
-
-                        }     ?>  </form> <?php
+                        }
                     }
-                    else {
-                        echo "<hr>";
-                        echo "<h2>";
-                        echo $message;
-                        echo "</h2>";
-                    } ?>
-                </div>
+                 ?>
+
+            </div>
                 <!--Fait par Dimitri Hueber, Récupère les messages envoyé à cette utilisateur-->
                 <div id="messagere" style="background-color: #f8f8f8;display: none">
                     <div id="messagerecu">
                     <h3><u>Message Reçus</u></h3>
 
-                    <?php 
-                    if($context->messageDestinataire != false) {
-                        foreach ( $context->messageDestinataire as $messageDestinataire)
-                        {
+                    <?php
+                    if ($context->messageDestinataire == false){
+                        echo "<hr>";
+                        echo "<h2>";
+                        echo $messageDestinataire;
+                        echo "</h2>";
+                    }
+
+                    else if($context->messageDestinataire != false) {
+                        foreach ($context->messageDestinataire as $messageDestinataire) {
                             echo "<hr>";
-                            echo "<h2>"; 
+                            echo "<h2>";
                             echo htmlentities($messageDestinataire->post->texte);
                             echo "</h2>";
                             echo "<h5><span class='glyphicon glyphicon-user'></span> Post by ";
@@ -121,26 +133,33 @@ else $messageDestinataire = "Personne n'a écrit à cet user !";
                             echo $messageDestinataire->post->getDate();
                             echo "</h5>";
 
-                            echo "<h5><span class='glyphicon glyphicon-thumbs-up'> </span></h5>";
-                            if(!isset($messageDestinataire->aime)){
+                            ?>
+
+
+                            <div>
+                                <form method="POST" class="update_like" action="BlackManba.php?action=showmessage&id=<?php echo $context->res->id; ?>">
+                                    <input type="hidden" name="modif_like" id="modif_like" value="<?= $message->id ?>">
+                                    <button type="submit"><span class="glyphicon glyphicon-thumbs-up"></span></button>
+                                </form>
+                            </div>
+
+                            <?php
+                            if (!isset($messageDestinataire->aime)) {
                                 echo "0";
-                            } 
-                            else {
+                            } else {
                                 echo $messageDestinataire->aime;
-                            } 
-                            echo "  <input type='button' id='add_aime' class='glyphicon-bitcoin' value='<?= $messageDestinataire->id ?>' >Add!</input><br>";
+                            }
                         }
                     }
-                    else {
-                        echo "<hr>";
-                        echo "<h2>";
-                        echo $messageDestinataire;
-                        echo "</h2>";
-                    } ?>
+                     ?>
                 </div>
                 </div>
             </div>
     </div>
+
+
+<!--******************* SCRIPT AJAX ***************************-->
+
     <!--Fait par Dimitri Hueber-->
     <script type="text/javascript">
         function showPane(id) {
@@ -192,6 +211,39 @@ else $messageDestinataire = "Personne n'a écrit à cet user !";
 
         });
 
+         // MARTINEZ GEOFFREY
+        // script qui permet de déposer un like a un message
+        //
+
+        $(function() {
+            $('.update_like').submit(function( event ) {
+                // Stop form from submitting normally
+                event.preventDefault();
+
+                // Get some values from elements on the page:
+                var $formVal = $(this).find( "input[name='modif_avatar']" )
+                var term = $formVal.val();
+
+                if (term == '') {
+                    return;
+                }
+
+                // Send the data using post
+                $.post('./BlackManbaAjax.php?action=showmessage&id=<?php echo $context->res->id ?>', { value_id: term } )
+                    .done(function (data) {
+
+                        $formVal.val('');
+                        $('#messageenvoyer').load('./BlackManbaAjax.php?action=showmessage&id=<?php echo $context->res->id ?> #messageenvoyer')
+                        $('#messagerecu').load('./BlackManbaAjax.php?action=showmessage&id=<?php echo $context->res->id ?> #messagerecu')
+                        Notification("like");
+                    })
+
+                return false;
+            });
+        });
+
+
+/*
         function addLike($id){
 
             var arr = {"messge" : $id};
@@ -212,41 +264,42 @@ else $messageDestinataire = "Personne n'a écrit à cet user !";
             );
 
         }
+*/
+        /*
+                // MARTINEZ GEOFFREY - Ajout aime et refresh
+                $(function() {
 
-        // MARTINEZ GEOFFREY - Ajout aime et refresh
-        $(function() {
+                    $('.add_aime').submit(function( event ) {
 
-            $('.add_aime').submit(function( event ) {
+                        // Stop form from submitting normally
+                        event.preventDefault();
 
-                // Stop form from submitting normally
-                event.preventDefault();
+                        // je récupere l'id du message
+                        var term = $('.messageid').val();
 
-                // je récupere l'id du message
-                var term = $('.messageid').val();
-
-                if (term == '') {
-                    return;
-                }
-
-                // J'utilise Post
-                $.post(
-                    'BlackManbaAjax.php?action=update',
-                    {
-                        value_id : term,
-
-                        test : "test"
-                    },
-                    function (data) {
-                        if(data == 'Success'){
-                            Notification('send');
+                        if (term == '') {
+                            return;
                         }
 
-                    }
-                    );
+                        // J'utilise Post
+                        $.post(
+                            'BlackManbaAjax.php?action=update',
+                            {
+                                value_id : term,
 
-/*
-                // Send the data using post
-                $.post('BlackManbaAjax.php?action=showmessage&id=<?php echo $context->res->id ?>', { send_message: term } )
+                                test : "test"
+                            },
+                          function (data) {
+                                if(data == 'Success'){
+                                    Notification('send');
+                                }
+
+                            }
+                            );
+
+        /*
+                        // Send the data using post
+                        $.post('BlackManbaAjax.php?action=showmessage&id=<?php echo $context->res->id ?>', { send_message: term } )
                 .done(function (data) {
                     data = JSON.parse(data);
 
@@ -255,8 +308,5 @@ else $messageDestinataire = "Personne n'a écrit à cet user !";
                     $('#messagerecu').load('./BlackManbaAjax.php?action=showmessage&id=<?php echo $context->res->id ?> #messagerecu')
                 return false;
             });*/
-
-        });
-
 
     </script>

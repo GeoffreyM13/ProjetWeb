@@ -94,22 +94,15 @@ class mainController
 
             return $context->redirect('BlackManba.php?action='.$request['action']);
         }
+        // Martinez Geoffrey
+        // pour l'ajout d'un j'aime en ajax
+        //// récupère l'id du post en paramètre
 
-        if (!empty($_POST['value_id'])) {
-
-
-            var_dump($_POST['value_id']);
-            var_dump($_POST['add_aime']);
-            var_dump($_GET['message']);
-            die;
-            messageTable::UpdateAime($_POST['value_id']); // message id
+        if (!empty($_POST['modif_like'])) {
 
 
-            if ($context->type === 'ajax') {
-                die(json_encode($sent));
-            }
-
-            return $context->redirect('BlackManba.php?action='.$request['action']);
+           messageTable::UpdateAime($_POST['modif_like']); // message id
+           return $context->redirect('BlackManba.php?action='.$request['action']."&id=".$context->res->id);
         }
 
         $context->navbar_etat = "showmessage";
@@ -203,6 +196,7 @@ class mainController
         return context::SUCCESS;
     }
 
+    // permet de vérifier si l'utilisateur est connecté ou pas
     public static function logornot($request, $context)
     {
         if ($_SESSION['prenom'] == null || $_SESSION['nom'] == null) {
@@ -210,6 +204,8 @@ class mainController
         }
     }
 
+
+/*
     public static function update($request, $context)
     {
         return $context->redirect("BlackManba.php?action=login");
@@ -230,6 +226,6 @@ class mainController
 
         return context::NONE;
     }
-
+*/
 
 }

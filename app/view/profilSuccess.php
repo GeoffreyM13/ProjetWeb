@@ -3,6 +3,7 @@
 -->
 
 <!--martinez geoffrey - inclusion du chat-->
+<!-- Page qui regroupe le profil avec la possibilité de modifier avatar et statut -->
 <div class="col-sm-3 sidenav">
 
     <?php include("chatSuccess.php"); ?>
@@ -48,6 +49,10 @@
                 </div>
             </div>
         </div>
+
+
+<!-- ************ SCRIPT AJAX ********** -->
+
 <!-- Fait par Dimitri HUEBER -->
 <script>
     $(function() {
@@ -93,6 +98,7 @@
                 data = JSON.parse(data);
                 $formVal.val('');
                 $('#profile-userpic-profil').load('./BlackManbaAjax.php?action=profil #profile-userpic-profil')
+                Notification('avatar');
             })
 
             return false;

@@ -91,7 +91,7 @@ class messageTable {
 
 
     //Martinez Geoffrey
-    // permet de retourner les aimes pour un message
+    // permet de mettre a jour les j'aimes pour un message
     public static function UpdateAime($message_id){
 
         $em = dbconnection::getInstance()->getEntityManager();
@@ -103,11 +103,12 @@ class messageTable {
             return false;
         }
 
-        $message = add();
-        $em->merge($message);
+        $message->aime++;
+
+        $em->persist($message);
         $em->flush();
 
-        return $message->aime;
+        return $message;
     }
 
 }

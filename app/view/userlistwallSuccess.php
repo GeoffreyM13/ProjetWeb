@@ -29,6 +29,14 @@
         width: 100%;
     }
 </style>
+
+<!--
+        Affiche un tableau pour la page ****SHOWMESSAGE***  avec les utilisateurs
+        le tableau peut être trier
+        une fonction de recherche y est intégré aussi avec le js
+
+-->
+
 <script type="text/javascript">
     $(function () {
     $( '#table' ).searchable({

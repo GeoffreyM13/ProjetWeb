@@ -8,7 +8,7 @@
 
 ?>
 
-
+<!-- Page qui affiche les 10 derniers messages poster -->
 
 <div class="col-lg-offset-4">
 <h4>WHAT'S NEWS ? [...]</h4><br><br>
@@ -43,9 +43,9 @@
             <div class="span8">
                 <p></p>
                 <p>
-                    <i class="icon-user"></i> by <a href="#"> <?=  $message->emetteur->nom; ?> </a>
+                    <i class="icon-user"></i> by <a href="#"> <?php if (isset($message->emetteur->nom)){echo htmlentities($message->emetteur->nom); }else echo "Sans parent"; ?> </a>
                     || <i class="icon-calendar"> On : <?= $message->post->getDate(); ?> </i>
-                    |  For : <?= $message->destinataire->nom; ?>
+                    |  For : <?php if (isset($message->destinataire->nom)){echo htmlentities($message->destinataire->nom); }else echo "Sans destinataire"; ?>
                 </p>
             </div>
         </div>

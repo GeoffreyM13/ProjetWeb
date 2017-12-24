@@ -6,6 +6,8 @@
  * Time: 18:28
  */
  ?>
+<!-- Martinez Geoffrey -->
+<!-- page qui affiche un formulaire pour ce connecté au site -->
 
 <div class = "container">
     <div class="wrapper">
