@@ -56,7 +56,7 @@ else $messageDestinataire = "Personne n'a écrit à cet user !";
                     <?php 
                     if($context->message != false) {
                       ?>
-                    <form method='POST'  action="BlackManba.php?action=showmessage&id=<?php echo $context->res->id  ?>">
+                    <form method='POST' id ="formA" class ="add_aime" action="BlackManba.php?action=showmessage&id=<?php echo $context->res->id?>">
                         <?php
                         foreach ( $context->message as $message)
                         {
@@ -75,7 +75,7 @@ else $messageDestinataire = "Personne n'a écrit à cet user !";
                                 echo $message->post->getDate();
                                 echo "</h5>";
 
-                                echo "<h5><span class='glyphicon glyphicon-thumbs-up'></span></h5>";
+                                echo "<div class=\"btn\" onclick=\"addLike(<?= $message->id ?>)\"> add like  </div>";
                                 if(!isset($message->aimer)){
                                     echo "0";
                                 } 
@@ -84,8 +84,7 @@ else $messageDestinataire = "Personne n'a écrit à cet user !";
                                 } 
                                  ?>
 
-                            <form method='POST' id='add_aime' role="form" action="BlackManba.php?action=showmessage&id=<?php echo $context->res->id  ?>&message=<?php echo $message->id  ?>">
-                            <button type='submit' class='btn-warning'> ADD!</button><br>
+                            <input name="messageid" class ="messageid" value="<?= $message->id ?>" type='submit' class='btn-warning'> ADD!</input><br>
 
                     <?php
 
@@ -193,29 +192,59 @@ else $messageDestinataire = "Personne n'a écrit à cet user !";
 
         });
 
+        function addLike($id){
+
+            var arr = {"messge" : $id};
+
+            $.post(
+                'BlackManbaAjax.php?action=update',
+                {
+                    value_id : term,
+
+                    test : "test"
+                },
+                function (data) {
+                    if(data == 'Success'){
+                        Notification('send');
+                    }
+
+                }
+            );
+
+        }
+
         // MARTINEZ GEOFFREY - Ajout aime et refresh
         $(function() {
-            $('.value_id').submit(function( event ) {
+            $('.add_aime').submit(function( event ) {
                 // Stop form from submitting normally
                 event.preventDefault();
 
-                var $formVal = $(this).find( "input[name='value_id']" )
-                var term = $formVal.val();
+                // je récupere l'id du message
+                var term = $('.messageid').val();
 
                 if (term == '') {
                     return;
                 }
 
-                // Send the data using post
-                $.post('BlackManbaAjax.php?action=showmessage&id=<?php echo $context->res->id ?>&message=<?php echo $context->message->id ?>', { value_id : term } )
-                .done(function (data) {
-                    data = JSON.parse(data);
+                // J'utilise Post
+                $.post(
+                    'BlackManbaAjax.php?action=update',
+                    {
+                        value_id : term,
 
-                    $formVal.val('');
+                        test : "test"
+                    },
+                    function (data) {
+                        if(data == 'Success'){
+                            Notification('send');
+                        }
+
+                    }
+                    );
+
+
                     $('#messageenvoyer').load('./BlackManbaAjax.php?action=showmessage&id=<?php echo $context->res->id ?> #messageenvoyer')
                     $('#messagerecu').load('./BlackManbaAjax.php?action=showmessage&id=<?php echo $context->res->id ?> #messagerecu')
-                })
-
                 return false;
             });
 

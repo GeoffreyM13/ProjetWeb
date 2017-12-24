@@ -65,6 +65,8 @@ class mainController
     //Update Dimitri Hueber
     public static function showmessage($request, $context)
     {
+
+
         if ($_SESSION['prenom'] === null || $_SESSION['nom'] === null) {
             return $context->redirect("BlackManba.php?action=login");
         }
@@ -93,13 +95,11 @@ class mainController
             return $context->redirect('BlackManba.php?action='.$request['action']);
         }
 
-        if (isset($_GET['message'])) {
+        if (!empty($_POST['value_id'])) {
 
-
-            var_dump($_POST['add_aime']);
-            var_dump($_GET['message']);
-
+            var_dump("ici");
             die;
+
             messageTable::UpdateAime($_GET['message']); // message id
 
             if ($context->type === 'ajax') {
@@ -175,7 +175,7 @@ class mainController
     {
         self::logornot($request, $context);
         self::chat($request, $context);
-        $context->profil = utilisateurTable::getUserById($_SESSION['id']);
+        $context->profil= utilisateurTable::getUserById($_SESSION['id']);
         if (!empty($request['modif_statut'])) {
             $context->profil->statut = strip_tags($request['modif_statut']);
             utilisateurTable::updateStatut($context->profil);
@@ -197,5 +197,27 @@ class mainController
             return $context->redirect("BlackManba.php?action=login");
         }
     }
+
+    public static function update($request, $context)
+    {
+        return $context->redirect("BlackManba.php?action=login");
+
+        var_dump("ici");
+        die;
+
+        if (!empty($_POST['value_id'])) {
+
+            messageTable::UpdateAime($_GET['message']); // message id
+
+            if ($context->type === 'ajax') {
+                die(json_encode($sent));
+            }
+
+            return $context->redirect('BlackManba.php?action='.$request['action']);
+        }
+
+        return context::NONE;
+    }
+
 
 }
