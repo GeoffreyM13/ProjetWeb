@@ -97,10 +97,13 @@ class mainController
 
         if (!empty($_POST['value_id'])) {
 
-            var_dump("ici");
-            die;
 
-            messageTable::UpdateAime($_GET['message']); // message id
+            var_dump($_POST['value_id']);
+            var_dump($_POST['add_aime']);
+            var_dump($_GET['message']);
+            die;
+            messageTable::UpdateAime($_POST['value_id']); // message id
+
 
             if ($context->type === 'ajax') {
                 die(json_encode($sent));
@@ -181,6 +184,15 @@ class mainController
             utilisateurTable::updateStatut($context->profil);
             if ($context->type === 'ajax') {
                die($context->profil->statut);
+            }
+            
+            return $context->redirect('BlackManba.php?action='.$request['action']);
+        }
+        if (!empty($request['modif_avatar'])) {
+            $context->profil->avatar = strip_tags($request['modif_avatar']);
+            utilisateurTable::updateAvatar($context->profil);
+            if ($context->type === 'ajax') {
+               die(json_encode($sent));
             }
             
             return $context->redirect('BlackManba.php?action='.$request['action']);

@@ -49,6 +49,11 @@ class utilisateurTable {
         $em = dbconnection::getInstance()->getEntityManager() ;
         $em->flush($user);
     }
+
+    public static function updateAvatar($user){
+        $em = dbconnection::getInstance()->getEntityManager() ;
+        $em->flush($user);
+    }
 }
 
 ?>
